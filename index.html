@@ -1016,7 +1016,7 @@
     <div class="share-wrap">
       <h2 data-key="shareProj">📱 Share This Project</h2>
       <p data-key="scanView">Scan the QR code to open the live site on any device.</p>
-      <div id="qrcode">https://pnqv56wdqf-sys.github.io/r/</div>
+      <div id="qrcode">https://pnqv56wdqf-sys.github.io/Jordanfrh/</div>
       <button class="share-copy-btn" id="copyBtn" onclick="copyShareLink()">🔗 Copy Link</button>
     </div>
   </div>
@@ -2458,7 +2458,7 @@ function generateQR() {
   const qrEl = document.getElementById("qrcode");
   qrEl.innerHTML = "";
   try {
-    new QRCode(qrEl, { text: "https://pnqv56wdqf-sys.github.io/r/", width: 150, height: 150 });
+    new QRCode(qrEl, { text: "https://pnqv56wdqf-sys.github.io/Jordanfrh/", width: 150, height: 150 });
   } catch(e) {
     qrEl.textContent = "QR unavailable";
   }
@@ -2580,5 +2580,82 @@ function quizRestart() {
 // Init quiz on page load
 quizRender();
 </script>
-<script src="https://replit-cdn.com/replit-pill/replit-pill.global.js" data-repl-id="cb7dfaa3-3f76-4e1b-a71c-7ee9f98ba0de"></script></body>
+<script src="https://replit-cdn.com/replit-pill/replit-pill.global.js" data-repl-id="cb7dfaa3-3f76-4e1b-a71c-7ee9f98ba0de"></script>
+<script>
+/* ===== PERSISTENT BACKEND CONNECTOR ===== */
+(function () {
+  const NEW_API = "https://4acf9fde-44f4-4fc1-b10e-c61e372e08ce-00-2ddx6nk84uwpg.pike.replit.dev";
+  const PAGE_ID = "hidden-gems-jordan";
+
+  function toDisplayComment(c) {
+    return { id: c.id, name: c.author, body: c.body, likes: c.likes || 0, pinned: c.pinned === 1, createdAt: c.createdAt };
+  }
+
+  window.loadComments = function () {
+    fetch(NEW_API + "/api/comments/" + PAGE_ID)
+      .then(function (r) { return r.json(); })
+      .then(function (data) {
+        var comments = (data.comments || []).map(toDisplayComment);
+        var wall = document.getElementById("commentsWall");
+        if (wall) wall.innerHTML = comments.map(buildCommentBrickHtml).join("");
+      })
+      .catch(function () {});
+  };
+
+  window.submitReview = async function () {
+    var reviewEl = document.getElementById("review");
+    if (!reviewEl) return;
+    var review = reviewEl.value.trim();
+    if (!review) return;
+    var btn = document.querySelector(".submit-btn");
+    if (btn) btn.disabled = true;
+    var msg = document.getElementById("reviewMsg");
+    try {
+      var r = await fetch(NEW_API + "/api/comments/" + PAGE_ID, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ author: window._visitorName || "Anonymous", body: review }),
+      });
+      if (!r.ok) { var text = await r.text(); throw new Error("HTTP " + r.status + ": " + text.slice(0, 80)); }
+      var saved = await r.json();
+      if (typeof addCommentBrick === "function") addCommentBrick(toDisplayComment(saved));
+      reviewEl.value = "";
+      if (msg) { msg.textContent = "✓ Thank you for your feedback!"; setTimeout(function () { msg.textContent = ""; }, 3000); }
+    } catch (err) {
+      if (msg) { msg.textContent = "✗ Could not save: " + err.message; setTimeout(function () { msg.textContent = ""; }, 8000); }
+    } finally {
+      if (btn) btn.disabled = false;
+    }
+  };
+
+  window.recordVisit = async function () {
+    try {
+      var r = await fetch(NEW_API + "/api/views/" + PAGE_ID + "/increment", { method: "POST" });
+      if (r.ok) {
+        var data = await r.json();
+        var pill = document.getElementById("visitPill");
+        if (pill) pill.textContent = "👁️ " + data.count.toLocaleString() + " visitor" + (data.count !== 1 ? "s" : "");
+      }
+    } catch (_) {}
+  };
+
+  window.likeComment = async function (id, btn) {
+    var likedSet = JSON.parse(localStorage.getItem("likedComments") || "[]");
+    if (likedSet.includes(id)) return;
+    btn.disabled = true;
+    try {
+      var r = await fetch(NEW_API + "/api/comments/" + id + "/like", { method: "POST" });
+      if (r.ok) {
+        var updated = await r.json();
+        var span = btn.querySelector("span");
+        if (span) span.textContent = updated.likes;
+        btn.classList.add("reacted");
+        likedSet.push(id);
+        localStorage.setItem("likedComments", JSON.stringify(likedSet));
+      }
+    } finally { btn.disabled = false; }
+  };
+})();
+</script>
+</body>
 </html>
