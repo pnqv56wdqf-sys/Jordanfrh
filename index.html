@@ -1,0 +1,2584 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+  <title>Hidden Gems in Jordan</title>
+  <meta name="description" content="Discover twelve extraordinary hidden gems in Jordan — from rose-red Petra to the star-filled skies of Wadi Rum." />
+  <meta name="robots" content="index, follow" />
+  <meta property="og:title" content="Hidden Gems in Jordan" />
+  <meta property="og:description" content="Discover twelve extraordinary hidden gems in Jordan." />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,600;0,700;1,600&display=swap" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/gh/davidshimjs/qrcodejs@master/qrcode.min.js"></script>
+
+  <style>
+    :root {
+      --jordan-red: #8a1538;
+      --gold: #c8860a;
+      --gold-light: #f5c842;
+      --bg-main: #fcfbfa;
+      --bg-card: #ffffff;
+      --text-main: #1a1a1a;
+      --text-sub: #4a4a4a;
+      --muted: #8c8c8c;
+      --border: #e6e4e0;
+      --card-shadow: 0 12px 40px rgba(0,0,0,0.04);
+      --hover-shadow: 0 20px 48px rgba(138,21,56,0.08);
+      --font-heading: 'Playfair Display', serif;
+      --font-body: 'Plus Jakarta Sans', sans-serif;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    body.dark {
+      --bg-main: #0f0e0d;
+      --bg-card: #171514;
+      --text-main: #f5f4f0;
+      --text-sub: #ccc9c2;
+      --muted: #706e68;
+      --border: #292724;
+      --card-shadow: 0 12px 40px rgba(0,0,0,0.2);
+      --hover-shadow: 0 20px 48px rgba(245,200,66,0.05);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-main);
+      color: var(--text-main);
+      font-family: var(--font-body);
+      transition: background-color 0.3s, color 0.3s;
+      overflow-x: hidden;
+    }
+
+    /* ===== INTRO SCREEN ===== */
+    #introScreen {
+      position: fixed; inset: 0; z-index: 9999;
+      background: #0a0908; display: flex;
+      flex-direction: column; align-items: center; justify-content: center;
+      transition: opacity 0.8s ease, visibility 0.8s;
+    }
+    #introScreen.fade-out { opacity: 0; visibility: hidden; }
+    #introCanvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+    .intro-sand-bar {
+      position: absolute; bottom: 0; left: 0; width: 100%; height: 6px;
+      background: linear-gradient(90deg, var(--jordan-red), var(--gold), var(--jordan-red));
+    }
+    .intro-title {
+      position: relative; z-index: 2; text-align: center; margin-bottom: 40px;
+    }
+    .intro-title .flag { font-size: 3.5rem; display: block; margin-bottom: 12px; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%,100%{transform:scale(1);} 50%{transform:scale(1.1);} }
+    .intro-title h1 { font-family: var(--font-heading); font-size: 3rem; color: #ffffff; letter-spacing: -0.5px; margin-bottom: 8px; }
+    .intro-title p { color: var(--gold-light); letter-spacing: 2px; font-size: 0.9rem; text-transform: uppercase; }
+    .intro-card {
+      position: relative; z-index: 2; background: rgba(23, 21, 20, 0.8);
+      border: 1px solid rgba(200,134,10,0.2); backdrop-filter: blur(16px);
+      padding: 40px; border-radius: 24px; width: 90%; max-width: 440px;
+      box-shadow: 0 24px 64px rgba(0,0,0,0.5); text-align: center;
+    }
+    .intro-card h2 { color: #fff; font-family: var(--font-heading); margin-bottom: 12px; font-size: 1.6rem; }
+    .intro-card p { color: #b5b2aa; font-size: 0.95rem; margin-bottom: 24px; }
+    .intro-card input {
+      width: 100%; padding: 16px 20px; border-radius: 12px; border: 1px solid #383530;
+      background: rgba(0,0,0,0.3); color: #fff; font-family: var(--font-body);
+      font-size: 1rem; transition: var(--transition); text-align: center; margin-bottom: 20px;
+    }
+    .intro-card input:focus { outline: none; border-color: var(--gold); box-shadow: 0 0 0 3px rgba(200,134,10,0.2); }
+    .intro-divider { color: rgba(200,134,10,0.4); margin-bottom: 20px; font-size: 0.8rem; letter-spacing: 4px; }
+    .intro-btn {
+      width: 100%; padding: 16px; border: none; border-radius: 12px;
+      background: linear-gradient(135deg, var(--gold), #a16b05); color: #fff;
+      font-weight: 600; font-size: 1rem; cursor: pointer; transition: var(--transition);
+    }
+    .intro-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(200,134,10,0.3); }
+
+    /* ===== INTRO ENHANCEMENTS ===== */
+    .intro-glow {
+      position: absolute; z-index: 1;
+      width: 700px; height: 700px; border-radius: 50%;
+      background: radial-gradient(ellipse, rgba(200,134,10,0.13) 0%, rgba(138,21,56,0.09) 40%, transparent 70%);
+      animation: glowPulse 4s ease-in-out infinite;
+      pointer-events: none; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    }
+    @keyframes glowPulse {
+      0%,100% { opacity: 0.7; transform: translate(-50%,-50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%,-50%) scale(1.18); }
+    }
+    .intro-moon {
+      position: absolute; top: 36px; right: 48px; z-index: 3;
+      font-size: 2.2rem; line-height: 1;
+      filter: drop-shadow(0 0 12px rgba(245,200,66,0.5));
+      animation: moonFloat 3.5s ease-in-out infinite;
+      user-select: none;
+    }
+    @keyframes moonFloat {
+      0%,100% { transform: translateY(0) rotate(-8deg); }
+      50% { transform: translateY(-10px) rotate(4deg); }
+    }
+    .intro-corner-star {
+      position: absolute; top: 44px; left: 48px; z-index: 3;
+      font-size: 1.4rem;
+      filter: drop-shadow(0 0 8px rgba(245,200,66,0.4));
+      animation: starTwinkle 2.2s ease-in-out infinite;
+      user-select: none;
+    }
+    @keyframes starTwinkle {
+      0%,100% { opacity: 0.5; transform: scale(0.9); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+    .intro-dunes {
+      position: absolute; bottom: 6px; left: 0; width: 100%; z-index: 1;
+      pointer-events: none; overflow: hidden;
+    }
+    .intro-dunes svg { display: block; width: 100%; height: auto; }
+    .intro-sand-bar { overflow: hidden; }
+    .intro-sand-bar::after {
+      content: ''; position: absolute; top: 0; left: -100%; width: 60%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.45), transparent);
+      animation: barShimmer 2.8s ease-in-out infinite;
+    }
+    @keyframes barShimmer {
+      0% { left: -60%; }
+      100% { left: 160%; }
+    }
+    .intro-title { animation: titleFadeIn 0.7s ease 0.1s both; }
+    @keyframes titleFadeIn {
+      from { opacity: 0; transform: translateY(-18px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .intro-title .flag { animation: flagDrop 0.65s cubic-bezier(0.34,1.56,0.64,1) both, pulse 2s 0.65s infinite; }
+    @keyframes flagDrop {
+      from { opacity: 0; transform: scale(0) rotate(-20deg); }
+      to { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+    .intro-title h1 { animation: h1Emerge 0.7s cubic-bezier(0.34,1.3,0.64,1) 0.25s both; }
+    @keyframes h1Emerge {
+      from { opacity: 0; transform: translateY(16px) scaleX(0.95); }
+      to { opacity: 1; transform: translateY(0) scaleX(1); }
+    }
+    .intro-title p { animation: subFade 0.6s ease 0.5s both; }
+    @keyframes subFade {
+      from { opacity: 0; letter-spacing: 6px; }
+      to { opacity: 1; letter-spacing: 2px; }
+    }
+    .intro-card { animation: cardRise 0.85s cubic-bezier(0.34,1.56,0.64,1) 0.35s both; }
+    @keyframes cardRise {
+      from { opacity: 0; transform: translateY(44px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Gold line accent above the card title */
+    .intro-card-line {
+      width: 36px; height: 2px; margin: 0 auto 16px;
+      background: linear-gradient(90deg, var(--gold), #f5c842);
+      border-radius: 2px;
+      animation: lineExpand 0.5s ease 0.9s both;
+    }
+    @keyframes lineExpand {
+      from { width: 0; opacity: 0; }
+      to { width: 36px; opacity: 1; }
+    }
+
+    /* ===== SOURCE BOX ===== */
+    #sourceBox {
+      position: fixed; inset: 0; z-index: 9998;
+      background: radial-gradient(ellipse at 50% 60%, rgba(138,21,56,0.12) 0%, #0a0806 70%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 24px;
+    }
+    .src-card {
+      background: rgba(26,18,8,0.85); border: 1px solid rgba(200,134,10,0.2);
+      border-radius: 24px; padding: 2.4rem 2rem; width: 100%; max-width: 480px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.5); backdrop-filter: blur(8px);
+      text-align: center;
+    }
+    .src-icon { font-size: 2.4rem; margin-bottom: 0.6rem; }
+    .src-card h2 {
+      font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 0.4rem;
+      background: linear-gradient(135deg, #f5e6c8, var(--gold)); -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .src-card > p { color: #b5b2aa; font-size: 0.9rem; margin-bottom: 1.6rem; }
+    .src-options {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 1.6rem;
+    }
+    .src-option {
+      display: flex; flex-direction: column; align-items: center; gap: 6px;
+      padding: 14px 10px; border-radius: 14px; cursor: pointer;
+      border: 1.5px solid rgba(200,134,10,0.25);
+      background: rgba(255,255,255,0.05);
+      color: #ccc9c2; font-size: 0.82rem;
+      transition: all 0.2s ease; user-select: none;
+    }
+    .src-option .src-opt-icon { font-size: 1.6rem; }
+    .src-option:hover { border-color: rgba(200,134,10,0.5); background: rgba(200,134,10,0.1); color: #f5f4f0; }
+    .src-option.selected {
+      border-color: var(--gold); background: rgba(200,134,10,0.12);
+      color: var(--gold); box-shadow: 0 0 0 3px rgba(200,134,10,0.1);
+    }
+    .src-option.wide { grid-column: span 2; flex-direction: row; justify-content: center; gap: 10px; }
+    .src-btn {
+      width: 100%; padding: 15px; border: none; border-radius: 14px;
+      background: linear-gradient(135deg, var(--jordan-red), #8a1538);
+      color: white; font-weight: 700; font-size: 1rem; letter-spacing: 0.5px;
+      cursor: pointer; transition: var(--transition);
+      box-shadow: 0 6px 20px rgba(138,21,56,0.35);
+    }
+    .src-btn:hover { transform: translateY(-2px); box-shadow: 0 10px 28px rgba(138,21,56,0.5); }
+    .src-divider { width: 40px; height: 2px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 0 auto 1.4rem; }
+
+    /* ===== NAVBAR ===== */
+    #navbar {
+      position: sticky; top: 0; z-index: 1000; height: 76px;
+      background: rgba(252,251,250,0.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border); display: flex;
+      align-items: center; justify-content: space-between; padding: 0 40px;
+      transition: var(--transition);
+    }
+    body.dark #navbar { background: rgba(15,14,13,0.9); }
+    .navbar-logo { font-family: var(--font-heading); font-size: 1.35rem; font-weight: 700; letter-spacing: -0.5px; cursor:pointer; }
+    .navbar-logo span { color: var(--jordan-red); }
+    .navbar-right { display: flex; align-items: center; gap: 20px; }
+    #langSelect {
+      padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text-main); font-family: var(--font-body); font-size: 0.9rem;
+    }
+    .dark-toggle-label { font-size: 0.85rem; color: var(--muted); font-weight: 500; }
+    .dark-toggle {
+      width: 48px; height: 26px; border-radius: 20px; background: #e6e4e0;
+      position: relative; cursor: pointer; border: none; outline: none; transition: var(--transition);
+    }
+    body.dark .dark-toggle { background: var(--jordan-red); }
+    .dark-toggle::before {
+      content: ''; position: absolute; top: 3px; left: 3px; width: 20px; height: 20px;
+      border-radius: 50%; background: white; transition: var(--transition);
+    }
+    body.dark .dark-toggle::before { transform: translateX(22px); }
+
+    /* ===== HERO SECTION ===== */
+    #heroSection {
+      position: relative; height: 540px;
+      background: linear-gradient(180deg, rgba(138,21,56,0.06) 0%, rgba(252,251,250,0) 100%);
+      display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+      padding: 0 40px; overflow: hidden;
+    }
+    body.dark #heroSection { background: linear-gradient(180deg, rgba(138,21,56,0.15) 0%, rgba(15,14,13,0) 100%); }
+    .hero-tag {
+      background: rgba(138,21,56,0.08); color: var(--jordan-red); padding: 6px 16px;
+      border-radius: 30px; font-size: 0.82rem; font-weight: 700; letter-spacing: 1px;
+      text-transform: uppercase; margin-bottom: 24px;
+    }
+    body.dark .hero-tag { background: rgba(245,200,66,0.15); color: var(--gold-light); }
+    .hero-title { font-family: var(--font-heading); font-size: 3.5rem; font-weight: 600; line-height: 1.15; max-width: 800px; margin-bottom: 16px; }
+    .hero-title em { font-style: italic; font-family: var(--font-heading); color: var(--jordan-red); }
+    body.dark .hero-title em { color: var(--gold-light); }
+    .hero-sub { color: var(--text-sub); font-size: 1.15rem; max-width: 600px; line-height: 1.6; margin-bottom: 32px; }
+    .hero-meta { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; justify-content: center; }
+    .hero-player-chip, .weather-chip {
+      background: var(--bg-card); border: 1px solid var(--border); padding: 10px 18px;
+      border-radius: 30px; font-size: 0.9rem; display: flex; align-items: center; box-shadow: var(--card-shadow);
+    }
+    .hero-player-chip .dot { width: 8px; height: 8px; background: #2ec4b6; border-radius: 50%; margin-right: 10px; }
+
+    /* ===== PAGE NAV ===== */
+    .page-section { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+    .page-nav {
+      display: flex; justify-content: center; gap: 8px; background: var(--bg-card);
+      padding: 6px; border-radius: 16px; border: 1px solid var(--border);
+      max-width: 420px; margin: 0 auto 40px; box-shadow: var(--card-shadow); flex-wrap: wrap;
+    }
+    .page-nav button {
+      flex: 1; padding: 12px 10px; border: none; border-radius: 12px; font-family: var(--font-body);
+      font-weight: 600; font-size: 0.85rem; background: transparent; color: var(--text-sub);
+      cursor: pointer; transition: var(--transition); white-space: nowrap;
+    }
+    .page-nav button.active { background: var(--text-main); color: var(--bg-main); }
+
+    /* ===== HEADERS ===== */
+    .section-header { text-align: center; margin-bottom: 48px; }
+    .section-label { font-size: 0.85rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); font-weight: 600; display: block; margin-bottom: 8px; }
+    .section-title { font-family: var(--font-heading); font-size: 2.4rem; font-weight: 600; }
+    .section-divider { width: 40px; height: 3px; background: var(--jordan-red); margin: 16px auto 0; border-radius: 2px; }
+
+    /* ===== GEMS GRID ===== */
+    .gems-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 32px; }
+    .gem-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px;
+      overflow: hidden; box-shadow: var(--card-shadow); transition: var(--transition); display: flex; flex-direction: column;
+    }
+    .gem-card:hover { transform: translateY(-8px); box-shadow: var(--hover-shadow); }
+    .gem-card-img-wrap { position: relative; width: 100%; height: 230px; background: #eee; overflow: hidden; }
+    .gem-card-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .gem-card:hover .gem-card-img { transform: scale(1.05); }
+    .gem-badge-btn {
+      position: absolute; top: 16px; right: 16px; width: 40px; height: 40px;
+      border-radius: 50%; border: none; background: rgba(255,255,255,0.9);
+      color: #7a7a7a; font-size: 1.2rem; cursor: pointer; display: flex;
+      align-items: center; justify-content: center; transition: var(--transition); box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .gem-badge-btn.collected { background: var(--jordan-red); color: white; }
+    .gem-card-body { padding: 28px; display: flex; flex-direction: column; flex: 1; }
+    .gem-card-name { font-family: var(--font-heading); font-size: 1.45rem; font-weight: 600; margin-bottom: 12px; }
+    .gem-card-desc { color: var(--text-sub); font-size: 0.92rem; line-height: 1.6; margin-bottom: 20px; flex: 1; }
+    .gem-meta { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 24px; }
+    .gem-tag { background: var(--bg-main); border: 1px solid var(--border); padding: 6px 12px; border-radius: 8px; font-size: 0.8rem; color: var(--text-sub); font-weight: 500; }
+    .gem-calc { display: flex; gap: 8px; margin-bottom: 12px; }
+    .gem-calc input {
+      width: 50%; padding: 10px 12px; border: 1px solid var(--border); border-radius: 10px;
+      background: var(--bg-main); color: var(--text-main); font-family: var(--font-body); font-size: 0.85rem;
+    }
+    .gem-calc input:focus { outline: none; border-color: var(--jordan-red); }
+    .gem-calc-btn {
+      padding: 0 16px; border: 1px solid var(--border); border-radius: 10px;
+      background: var(--bg-card); color: var(--text-main); font-weight: 600; font-size: 0.85rem;
+      cursor: pointer; transition: var(--transition); font-family: var(--font-body);
+    }
+    .gem-calc-btn:hover { background: var(--text-main); color: var(--bg-main); border-color: var(--text-main); }
+    .gem-result { font-size: 0.85rem; font-weight: 600; color: var(--jordan-red); margin-bottom: 16px; min-height: 18px; }
+    body.dark .gem-result { color: var(--gold-light); }
+    .gem-btn-row { display: flex; gap: 8px; }
+    .gem-book-btn {
+      flex: 1; padding: 14px; border: none; border-radius: 12px;
+      background: var(--text-main); color: var(--bg-main); font-weight: 600;
+      font-size: 0.9rem; cursor: pointer; transition: var(--transition); font-family: var(--font-body);
+    }
+    .gem-book-btn:hover { background: var(--jordan-red); color: white; }
+    .gem-map-btn {
+      padding: 14px 16px; border: 1px solid var(--border); border-radius: 12px;
+      background: transparent; color: var(--text-main); font-weight: 600;
+      font-size: 0.9rem; cursor: pointer; transition: var(--transition); font-family: var(--font-body);
+      text-decoration: none; display: flex; align-items: center; justify-content: center;
+    }
+    .gem-map-btn:hover { background: var(--bg-main); border-color: var(--gold); color: var(--gold); }
+
+    /* ===== MINI GAME ===== */
+    .game-wrap { background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px; box-shadow: var(--card-shadow); overflow: hidden; }
+    .game-header { padding: 32px; border-bottom: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+    .game-header h2 { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 4px; }
+    .game-header p { color: var(--muted); font-size: 0.9rem; }
+    .game-stats { display: flex; gap: 12px; }
+    .stat-chip { background: var(--bg-main); border: 1px solid var(--border); padding: 10px 16px; border-radius: 12px; font-size: 0.95rem; }
+    .stat-chip strong { color: var(--jordan-red); }
+    body.dark .stat-chip strong { color: var(--gold-light); }
+    .game-body { padding: 32px; }
+    .game-start-btn {
+      padding: 12px 24px; background: var(--jordan-red); color: white; border: none;
+      border-radius: 12px; font-weight: 600; font-size: 0.95rem; cursor: pointer; transition: var(--transition); font-family: var(--font-body);
+    }
+    .game-start-btn:hover { background: #6e102c; transform: translateY(-1px); }
+    .game-warning { font-size: 0.85rem; color: var(--muted); }
+    #miniGame {
+      width: 100%; height: 320px; background: #0a0908; border-radius: 16px;
+      position: relative; overflow: hidden; margin: 20px 0; box-shadow: inset 0 4px 20px rgba(0,0,0,0.4);
+    }
+    .gemIcon {
+      position: absolute; width: 40px; height: 40px; font-size: 1.8rem;
+      text-align: center; line-height: 40px; cursor: pointer;
+      animation: popScale 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    }
+    @keyframes popScale { from { transform: scale(0); } to { transform: scale(1); } }
+    .leaderboard-grid { display: grid; grid-template-columns: 1.2fr 1fr; gap: 24px; margin-top: 24px; }
+    .lb-card { background: var(--bg-main); border: 1px solid var(--border); padding: 24px; border-radius: 16px; }
+    .lb-card h4 { font-family: var(--font-heading); font-size: 1.15rem; margin-bottom: 16px; }
+    .lb-entry { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 0.9rem; }
+    .lb-entry:last-child { border-bottom: none; }
+    .lb-rank { font-weight: bold; color: var(--gold); width: 24px; }
+    .lb-score { font-weight: 600; }
+    .achievement-row { display: flex; align-items: center; gap: 14px; margin-top: 16px; padding-top: 16px; border-top: 1px dashed var(--border); }
+    .achievement-badge {
+      width: 44px; height: 44px; background: var(--border); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center; font-size: 1.3rem; filter: grayscale(1); opacity: 0.4;
+    }
+    .achievement-badge.unlocked { filter: grayscale(0); opacity: 1; background: rgba(245,200,66,0.15); }
+
+    /* ===== REVIEWS ===== */
+    .review-wrap { background: var(--bg-card); border: 1px solid var(--border); padding: 32px; border-radius: 24px; box-shadow: var(--card-shadow); }
+    .review-textarea {
+      width: 100%; height: 120px; padding: 16px; border-radius: 14px; border: 1px solid var(--border);
+      background: var(--bg-main); color: var(--text-main); font-family: var(--font-body); font-size: 0.95rem;
+      resize: none; margin-bottom: 16px; outline: none; transition: var(--transition);
+    }
+    .review-textarea:focus { border-color: var(--jordan-red); }
+    .submit-btn {
+      padding: 12px 28px; border: none; border-radius: 12px; background: var(--text-main);
+      color: var(--bg-main); font-weight: 600; cursor: pointer; transition: var(--transition); font-family: var(--font-body);
+    }
+    .submit-btn:hover { background: var(--jordan-red); color: white; }
+    .review-msg { font-size: 0.88rem; margin-top: 12px; font-weight: 500; color: #2ec4b6; }
+    #commentsWall { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 32px; }
+    .commentBrick {
+      background: var(--bg-main); border: 1px solid var(--border); padding: 18px;
+      border-radius: 14px; font-size: 0.9rem; line-height: 1.5; color: var(--text-sub);
+      animation: popScale 0.3s ease; display: flex; flex-direction: column; gap: 10px;
+    }
+    .commentBrick.pinned-comment {
+      border-color: rgba(200,134,10,0.4); background: rgba(200,134,10,0.03);
+    }
+    .comment-top { display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+    .comment-pin-badge {
+      font-size: 0.72rem; color: var(--gold); background: rgba(200,134,10,0.12);
+      border: 1px solid rgba(200,134,10,0.25); border-radius: 20px; padding: 1px 7px;
+      font-weight: 600;
+    }
+    .comment-body { color: var(--text-sub); }
+    .comment-reactions { display: flex; gap: 6px; margin-top: 2px; }
+    .react-btn {
+      display: flex; align-items: center; gap: 4px; padding: 4px 10px; border-radius: 20px;
+      font-size: 0.78rem; cursor: pointer; border: 1px solid var(--border);
+      background: var(--bg-card); color: var(--text-sub);
+      transition: all 0.15s ease; user-select: none;
+    }
+    .react-btn:hover { border-color: var(--gold); color: var(--gold); background: rgba(200,134,10,0.07); }
+    .react-btn.reacted { border-color: var(--jordan-red); color: var(--jordan-red); background: rgba(138,21,56,0.07); }
+    .visit-pill {
+      display: inline-flex; align-items: center; gap: 6px; font-size: 0.82rem;
+      color: var(--muted); background: var(--bg-card); border: 1px solid var(--border);
+      border-radius: 20px; padding: 4px 12px;
+    }
+    .share-copy-btn {
+      margin-top: 18px; padding: 10px 26px; border: none; border-radius: 10px;
+      background: rgba(255,255,255,0.08); color: rgba(255,255,255,0.7);
+      font-size: 0.9rem; cursor: pointer; border: 1px solid rgba(255,255,255,0.12);
+      transition: all 0.2s ease;
+    }
+    .share-copy-btn:hover { background: rgba(255,255,255,0.14); color: #fff; }
+    .share-copy-btn.copied { color: #2ec4b6; border-color: #2ec4b6; }
+
+    /* ===== SHARE MODULE ===== */
+    .share-wrap {
+      background: linear-gradient(135deg, #171514, #0a0908); color: white;
+      padding: 48px; border-radius: 24px; text-align: center; box-shadow: var(--card-shadow);
+    }
+    .share-wrap h2 { font-family: var(--font-heading); font-size: 2rem; margin-bottom: 8px; }
+    .share-wrap p { color: #b5b2aa; font-size: 0.95rem; margin-bottom: 24px; }
+    #qrcode { background: white; padding: 16px; border-radius: 16px; display: inline-block; box-shadow: 0 12px 32px rgba(0,0,0,0.3); margin: 0 auto; }
+
+    /* ===== MODAL OVERLAYS ===== */
+    .modal-overlay {
+      position: fixed; inset: 0; z-index: 10000; background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(4px); display: flex; align-items: center; justify-content: center; padding: 20px;
+    }
+    .modal-box {
+      background: var(--bg-card); border: 1px solid var(--border); padding: 32px;
+      border-radius: 24px; max-width: 440px; width: 100%; box-shadow: 0 24px 64px rgba(0,0,0,0.15);
+      animation: modalSlide 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+    @keyframes modalSlide { from { transform: scale(0.9) translateY(20px); opacity:0; } to { transform:scale(1) translateY(0); opacity:1; } }
+    .modal-box h3 { font-family: var(--font-heading); font-size: 1.5rem; margin-bottom: 8px; }
+    .modal-box p { color: var(--text-sub); font-size: 0.92rem; margin-bottom: 24px; line-height: 1.5; }
+    .modal-options { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 24px; }
+    .modal-month-btn {
+      padding: 14px; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-main);
+      color: var(--text-main); font-family: var(--font-body); font-weight: 500; cursor: pointer; transition: var(--transition);
+    }
+    .modal-month-btn:hover { border-color: var(--jordan-red); }
+    .modal-month-btn.selected { background: var(--jordan-red); color: white; border-color: var(--jordan-red); }
+    .modal-actions { display: flex; gap: 12px; justify-content: flex-end; }
+    .modal-cancel { padding: 12px 20px; border: none; background: transparent; color: var(--muted); font-weight: 600; cursor: pointer; font-family: var(--font-body); }
+    .modal-confirm {
+      padding: 12px 24px; border: none; border-radius: 10px; background: var(--text-main);
+      color: var(--bg-main); font-weight: 600; cursor: pointer; font-family: var(--font-body); transition: var(--transition);
+    }
+    .modal-confirm:hover { background: var(--jordan-red); color: white; }
+    .broke-modal-box img { width: 100%; height: 180px; object-fit: cover; border-radius: 14px; margin-bottom: 16px; }
+
+    /* ===== ABOUT PAGE ===== */
+    .about-hero {
+      background: linear-gradient(135deg, #8a1538 0%, #4a071c 100%); color: white;
+      padding: 60px 40px 80px; text-align: center; position: relative; overflow: hidden;
+    }
+    .about-hero-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+    .about-hero h1 { font-family: var(--font-heading); font-size: 3rem; margin-bottom: 16px; }
+    .about-hero p { color: #e0d0d5; font-size: 1.1rem; line-height: 1.6; margin-bottom: 32px; }
+    .about-hero-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .ah-btn { padding: 12px 24px; border-radius: 12px; font-weight: 600; font-size: 0.9rem; cursor: pointer; transition: var(--transition); font-family: var(--font-body); }
+    .ah-btn-primary { background: white; color: var(--jordan-red); border: none; }
+    .ah-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255,255,255,0.2); }
+    .ah-btn-outline { background: transparent; color: white; border: 1px solid rgba(255,255,255,0.3); }
+    .ah-btn-outline:hover { background: rgba(255,255,255,0.1); border-color: white; }
+
+    .proverb-strip {
+      background: var(--bg-card); border: 1px solid var(--border); padding: 20px 32px;
+      border-radius: 16px; box-shadow: var(--card-shadow); display: flex;
+      justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; margin-bottom: 40px;
+    }
+    .proverb-text { font-family: var(--font-heading); font-size: 1.25rem; font-style: italic; color: var(--jordan-red); }
+    body.dark .proverb-text { color: var(--gold-light); }
+    .proverb-btn {
+      padding: 8px 16px; border: 1px solid var(--border); border-radius: 8px;
+      background: var(--bg-main); color: var(--text-main); font-weight: 600; font-size: 0.85rem;
+      cursor: pointer; font-family: var(--font-body); transition: var(--transition);
+    }
+    .proverb-btn:hover { background: var(--text-main); color: var(--bg-main); }
+
+    .about-cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 32px; }
+    .about-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px; overflow: hidden; box-shadow: var(--card-shadow); display: flex; flex-direction: column; }
+    .about-card img { width: 100%; height: 180px; object-fit: cover; }
+    .about-card-body { padding: 24px; }
+    .about-card-body h2 { font-family: var(--font-heading); font-size: 1.3rem; margin-bottom: 12px; }
+    .about-card-body p { color: var(--text-sub); font-size: 0.9rem; line-height: 1.5; margin-bottom: 10px; }
+    .about-card-body p:last-child { margin-bottom: 0; color: var(--muted); }
+
+    /* ===== FUN FACTS TICKER ===== */
+    .fun-facts-bar {
+      background: var(--jordan-red); color: white; padding: 12px 0; overflow: hidden;
+      position: relative; margin-bottom: 0;
+    }
+    .fun-facts-inner {
+      display: flex; animation: tickerScroll 40s linear infinite; width: max-content;
+    }
+    .fun-facts-inner:hover { animation-play-state: paused; }
+    .fun-fact-item { white-space: nowrap; padding: 0 48px; font-size: 0.9rem; font-weight: 500; }
+    .fun-fact-item span { color: var(--gold-light); font-weight: 700; margin-right: 6px; }
+    @keyframes tickerScroll { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ===== ABOUT ME PAGE ===== */
+    .aboutme-hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: white; padding: 80px 40px; text-align: center; position: relative; overflow: hidden;
+    }
+    .aboutme-hero::before {
+      content: ''; position: absolute; inset: 0; opacity: 0.05;
+      background: repeating-linear-gradient(45deg, white 0, white 1px, transparent 0, transparent 50%);
+      background-size: 20px 20px;
+    }
+    .aboutme-hero-content { position: relative; z-index: 2; max-width: 700px; margin: 0 auto; }
+    .aboutme-avatar {
+      width: 120px; height: 120px; border-radius: 50%; border: 4px solid var(--gold);
+      margin: 0 auto 24px; overflow: hidden; display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--jordan-red), var(--gold)); font-size: 3rem;
+      box-shadow: 0 0 0 8px rgba(200,134,10,0.2);
+    }
+    .aboutme-hero h1 { font-family: var(--font-heading); font-size: 2.5rem; margin-bottom: 8px; }
+    .aboutme-hero .role { color: var(--gold-light); font-size: 1rem; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 20px; display: block; }
+    .aboutme-hero p { color: #c0c8d8; font-size: 1rem; line-height: 1.7; margin-bottom: 32px; max-width: 550px; margin-left: auto; margin-right: auto; }
+    .social-links { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .social-link {
+      padding: 10px 20px; border-radius: 10px; border: 1px solid rgba(255,255,255,0.2);
+      color: white; text-decoration: none; font-weight: 600; font-size: 0.85rem;
+      transition: var(--transition); display: flex; align-items: center; gap: 8px;
+    }
+    .social-link:hover { background: rgba(255,255,255,0.1); border-color: var(--gold-light); color: var(--gold-light); }
+
+    .skills-section { max-width: 900px; margin: 0 auto; padding: 60px 24px; }
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 20px; margin-top: 40px; }
+    .skill-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 24px; box-shadow: var(--card-shadow); transition: var(--transition); text-align: center;
+    }
+    .skill-card:hover { transform: translateY(-4px); box-shadow: var(--hover-shadow); }
+    .skill-card .skill-icon { font-size: 2.5rem; margin-bottom: 12px; display: block; }
+    .skill-card h3 { font-family: var(--font-heading); font-size: 1.1rem; margin-bottom: 8px; }
+    .skill-card p { color: var(--text-sub); font-size: 0.85rem; line-height: 1.5; }
+    .about-me-quote {
+      background: linear-gradient(135deg, var(--jordan-red), #b01e4a); color: white;
+      padding: 40px; border-radius: 20px; text-align: center; margin: 40px 0;
+    }
+    .about-me-quote blockquote { font-family: var(--font-heading); font-size: 1.5rem; font-style: italic; margin-bottom: 12px; }
+    .about-me-quote cite { font-size: 0.9rem; opacity: 0.8; }
+    .contact-bar {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 16px;
+      padding: 24px 32px; display: flex; align-items: center; justify-content: space-between;
+      flex-wrap: wrap; gap: 16px; box-shadow: var(--card-shadow);
+    }
+    .contact-bar h3 { font-family: var(--font-heading); font-size: 1.3rem; }
+    .contact-bar p { color: var(--text-sub); font-size: 0.9rem; margin-top: 4px; }
+    .contact-btn {
+      padding: 12px 24px; border: none; border-radius: 12px; background: var(--jordan-red);
+      color: white; font-weight: 600; font-size: 0.9rem; cursor: pointer; font-family: var(--font-body);
+      transition: var(--transition); text-decoration: none; display: inline-block;
+    }
+    .contact-btn:hover { background: #6e102c; transform: translateY(-2px); }
+
+    /* ===== FLOATING PEOPLE ===== */
+    .person {
+      position: fixed; width: 44px; height: 44px;
+      background: linear-gradient(135deg, var(--jordan-red), #b01e4a);
+      border-radius: 50%; text-align: center; color: white;
+      font-weight: 600; line-height: 44px; font-size: 11px;
+      pointer-events: none; z-index: 500;
+      box-shadow: 0 4px 12px rgba(138,21,56,0.4);
+      white-space: nowrap; font-family: var(--font-body);
+    }
+    @keyframes fallDown { from { top: -60px; opacity: 1; } to { top: 110vh; opacity: 0; } }
+
+    /* ===== EMOJI RAIN ===== */
+    .emoji-rain {
+      position: fixed; top: -50px; font-size: 2rem; z-index: 9000; pointer-events: none;
+      animation: rainFall linear forwards, sway 1.2s ease-in-out infinite alternate;
+    }
+    @keyframes rainFall { to { transform: translateY(110vh); } }
+    @keyframes sway { from { margin-left: -12px; } to { margin-left: 12px; } }
+
+    /* ===== FOOTER ===== */
+    footer { text-align: center; padding: 32px 24px; color: var(--muted); font-size: 0.82rem; letter-spacing: 1px; border-top: 1px solid var(--border); }
+    footer span { color: var(--gold); font-weight: 600; }
+
+    /* ===== RAINBOW ===== */
+    @keyframes rainbowBG { 0%{background-position:0% 50%} 100%{background-position:100% 50%} }
+    .rainbow-record #heroSection {
+      background: linear-gradient(270deg,#ff5f6d,#ffc371,#6dd5ed,#2193b0,#cc2b5e);
+      background-size: 400% 400%; animation: rainbowBG 5s linear infinite;
+    }
+
+    /* ===== JORDAN BY NUMBERS ===== */
+    .stats-section { margin-top: 48px; }
+    .stats-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 20px; }
+    .stat-card {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 20px;
+      padding: 28px 20px; text-align: center; box-shadow: var(--card-shadow);
+      transition: var(--transition); position: relative; overflow: hidden;
+    }
+    .stat-card::before {
+      content: ''; position: absolute; bottom: 0; left: 0; width: 100%; height: 3px;
+      background: linear-gradient(90deg, var(--jordan-red), var(--gold));
+    }
+    .stat-card:hover { transform: translateY(-6px); box-shadow: var(--hover-shadow); }
+    .stat-icon { font-size: 2rem; margin-bottom: 10px; display: block; }
+    .stat-number {
+      font-family: var(--font-heading); font-size: 2.2rem; font-weight: 700;
+      color: var(--jordan-red); display: block; line-height: 1;
+    }
+    body.dark .stat-number { color: var(--gold-light); }
+    .stat-label { color: var(--text-sub); font-size: 0.82rem; margin-top: 8px; font-weight: 500; line-height: 1.4; }
+
+    /* ===== JORDAN QUIZ ===== */
+    .quiz-wrap {
+      background: var(--bg-card); border: 1px solid var(--border); border-radius: 24px;
+      box-shadow: var(--card-shadow); overflow: hidden; margin-top: 48px;
+    }
+    .quiz-header {
+      background: linear-gradient(135deg, #8a1538, #4a071c); color: white;
+      padding: 32px; text-align: center;
+    }
+    .quiz-header h2 { font-family: var(--font-heading); font-size: 1.8rem; margin-bottom: 6px; }
+    .quiz-header p { color: #e0d0d5; font-size: 0.9rem; }
+    .quiz-progress-bar { height: 4px; background: rgba(255,255,255,0.2); position: relative; }
+    .quiz-progress-fill { height: 100%; background: var(--gold-light); transition: width 0.5s ease; width: 0%; }
+    .quiz-body { padding: 36px; }
+    .quiz-q-num { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; color: var(--muted); font-weight: 600; margin-bottom: 10px; }
+    .quiz-question { font-family: var(--font-heading); font-size: 1.4rem; margin-bottom: 28px; line-height: 1.4; }
+    .quiz-options { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 24px; }
+    .quiz-opt {
+      padding: 16px; border: 2px solid var(--border); border-radius: 14px;
+      background: var(--bg-main); color: var(--text-main); font-family: var(--font-body);
+      font-size: 0.92rem; font-weight: 500; cursor: pointer; transition: var(--transition); text-align: left;
+    }
+    .quiz-opt:hover:not(:disabled) { border-color: var(--jordan-red); background: rgba(138,21,56,0.05); }
+    .quiz-opt.correct { background: rgba(46,196,182,0.12); border-color: #2ec4b6; color: #1a9b91; }
+    .quiz-opt.wrong { background: rgba(255,80,80,0.1); border-color: #ff5050; color: #cc3333; }
+    .quiz-opt:disabled { cursor: default; }
+    .quiz-feedback {
+      min-height: 40px; font-size: 0.92rem; font-weight: 600; padding: 12px 16px;
+      border-radius: 10px; margin-bottom: 20px; display: none;
+    }
+    .quiz-feedback.show { display: block; }
+    .quiz-feedback.correct-fb { background: rgba(46,196,182,0.1); color: #1a9b91; border: 1px solid #2ec4b6; }
+    .quiz-feedback.wrong-fb { background: rgba(255,80,80,0.08); color: #cc3333; border: 1px solid #ff5050; }
+    .quiz-next-btn {
+      padding: 13px 28px; border: none; border-radius: 12px;
+      background: var(--text-main); color: var(--bg-main); font-weight: 600;
+      font-size: 0.95rem; cursor: pointer; font-family: var(--font-body);
+      transition: var(--transition); display: none;
+    }
+    .quiz-next-btn:hover { background: var(--jordan-red); color: white; }
+    .quiz-result { text-align: center; padding: 40px 20px; display: none; }
+    .quiz-result .big-score { font-family: var(--font-heading); font-size: 4rem; color: var(--jordan-red); }
+    body.dark .quiz-result .big-score { color: var(--gold-light); }
+    .quiz-result h3 { font-family: var(--font-heading); font-size: 1.6rem; margin: 8px 0 12px; }
+    .quiz-result p { color: var(--text-sub); font-size: 0.95rem; margin-bottom: 24px; }
+    .quiz-restart-btn {
+      padding: 14px 32px; border: none; border-radius: 14px;
+      background: var(--jordan-red); color: white; font-weight: 600;
+      font-size: 1rem; cursor: pointer; font-family: var(--font-body); transition: var(--transition);
+    }
+    .quiz-restart-btn:hover { background: #6e102c; transform: translateY(-2px); }
+    @media (max-width: 600px) {
+      .quiz-options { grid-template-columns: 1fr; }
+      .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    .hidden { display: none !important; }
+    #hiddenGemsPage, #aboutPage, #aboutMePage { animation: pageSlide 0.4s ease; }
+    @keyframes pageSlide { from { opacity:0; transform: translateY(16px); } to { opacity:1; transform:none; } }
+
+    @media (max-width: 768px) {
+      #heroSection { padding: 0 24px 40px; height: auto; min-height: 400px; }
+      .game-header, .game-body, .review-wrap { padding: 20px; }
+      #navbar { padding: 0 16px; }
+      .navbar-logo { font-size: 1rem; }
+      .share-wrap { padding: 24px; }
+      .about-hero { padding: 40px 24px 60px; }
+      .leaderboard-grid { grid-template-columns: 1fr; }
+      .hero-title { font-size: 2.2rem; }
+      .page-nav { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- INTRO SCREEN -->
+<div id="introScreen">
+  <canvas id="introCanvas"></canvas>
+  <div class="intro-glow"></div>
+  <div class="intro-moon"></div>
+  <div class="intro-corner-star">✦</div>
+  <div class="intro-sand-bar"></div>
+  <button onclick="openAdminPanel()" style="
+    position:absolute; bottom:18px; right:22px; background:none; border:none;
+    color:rgba(160,140,110,0.35); font-size:0.7rem; cursor:pointer;
+    letter-spacing:1px; padding:4px 8px; z-index:10;
+  ">⚙</button>
+
+  <!-- Desert dune silhouette -->
+  <div class="intro-dunes">
+    <svg viewBox="0 0 1440 120" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
+      <!-- Back dune layer (darker) -->
+      <path d="M0,100 C180,60 360,95 540,70 C720,45 900,85 1080,65 C1260,45 1380,75 1440,60 L1440,120 L0,120 Z" fill="rgba(30,18,10,0.85)"/>
+      <!-- Mid dune layer -->
+      <path d="M0,110 C120,80 280,105 440,85 C600,65 760,100 920,80 C1080,60 1260,95 1440,78 L1440,120 L0,120 Z" fill="rgba(20,12,6,0.9)"/>
+      <!-- Front dune layer (brightest) -->
+      <path d="M0,115 C100,95 240,118 380,105 C520,92 660,115 800,102 C940,89 1100,112 1240,100 C1320,94 1390,108 1440,104 L1440,120 L0,120 Z" fill="rgba(138,21,56,0.15)"/>
+    </svg>
+  </div>
+
+  <div class="intro-title">
+    <span class="flag">🇯🇴</span>
+    <h1 data-key="introTitle">Hidden Gems in Jordan</h1>
+    <p data-key="introSub">Where history lives</p>
+  </div>
+  <div class="intro-card">
+    <div class="intro-card-line"></div>
+    <h2 data-key="introWelcome">Welcome, Traveler</h2>
+    <p data-key="introDesc">Enter your name to begin your journey</p>
+    <input type="text" id="authUsername" placeholder="Your name..." />
+    <select id="introLangSelect" onchange="introSetLang()" style="
+      margin-top:14px; width:100%; padding:10px 14px;
+      background:rgba(255,255,255,0.07); border:1px solid rgba(200,134,10,0.35);
+      border-radius:10px; color:#f5e6c8; font-size:0.95rem; cursor:pointer;
+      appearance:none; text-align:center;
+    ">
+      <option value="en">🇬🇧 English</option>
+      <option value="ar">🇯🇴 العربية</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="es">🇪🇸 Español</option>
+      <option value="hi">🇮🇳 हिन्दी</option>
+      <option value="zh">🇨🇳 中文</option>
+    </select>
+    <div class="intro-divider">✦ ✦ ✦</div>
+    <button class="intro-btn" data-key="introBtn" onclick="simulateGoogleLogin()">✨ Start My Journey</button>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div id="adminModal" style="
+  display:none; position:fixed; inset:0; z-index:99999;
+  background:rgba(8,6,4,0.92); backdrop-filter:blur(6px);
+  align-items:center; justify-content:center;
+">
+  <div style="
+    background:#111009; border:1px solid rgba(120,100,60,0.2);
+    border-radius:14px; width:min(720px,95vw); max-height:85vh;
+    display:flex; flex-direction:column; overflow:hidden;
+  ">
+    <!-- Gate -->
+    <div id="adminGate" style="padding:2.2rem 2rem; text-align:center;">
+      <p style="color:rgba(160,140,100,0.5); font-size:0.8rem; letter-spacing:2px; margin-bottom:1.2rem;">ADMIN</p>
+      <input id="adminCode" type="password" maxlength="20" placeholder="passcode"
+        onkeydown="if(event.key==='Enter')checkAdminCode()"
+        style="
+          background:rgba(255,255,255,0.04); border:1px solid rgba(120,100,60,0.25);
+          border-radius:8px; color:rgba(200,180,130,0.7); font-size:1rem;
+          padding:10px 16px; width:100%; text-align:center; letter-spacing:4px;
+          outline:none; margin-bottom:0.8rem;
+        " />
+      <div style="display:flex; gap:8px;">
+        <button onclick="checkAdminCode()" style="
+          flex:1; padding:10px; background:rgba(120,100,60,0.2);
+          border:1px solid rgba(120,100,60,0.25); border-radius:8px;
+          color:rgba(200,180,130,0.7); cursor:pointer; font-size:0.9rem;
+        ">Enter</button>
+        <button onclick="closeAdminPanel()" style="
+          padding:10px 16px; background:none;
+          border:1px solid rgba(120,100,60,0.15); border-radius:8px;
+          color:rgba(160,140,100,0.4); cursor:pointer; font-size:0.9rem;
+        ">✕</button>
+      </div>
+      <p id="adminErr" style="color:rgba(180,60,30,0.7); font-size:0.8rem; margin-top:0.6rem; min-height:1em;"></p>
+    </div>
+    <!-- Panel (shown after correct code) -->
+    <div id="adminPanel" style="display:none; flex-direction:column; overflow:hidden; flex:1;">
+      <div style="padding:1rem 1.4rem; border-bottom:1px solid rgba(120,100,60,0.15); display:flex; align-items:center; justify-content:space-between;">
+        <div style="display:flex; gap:8px;">
+          <button onclick="adminShowTab('comments')" id="tabComments" style="background:rgba(120,100,60,0.2); border:1px solid rgba(120,100,60,0.3); color:rgba(200,180,130,0.75); border-radius:6px; padding:4px 12px; font-size:0.72rem; cursor:pointer; letter-spacing:1px;">COMMENTS</button>
+          <button onclick="adminShowTab('share')" id="tabShare" style="background:none; border:1px solid rgba(120,100,60,0.12); color:rgba(160,140,100,0.35); border-radius:6px; padding:4px 12px; font-size:0.72rem; cursor:pointer; letter-spacing:1px;">SHARE</button>
+        </div>
+        <button onclick="closeAdminPanel()" style="background:none; border:none; color:rgba(160,140,100,0.4); cursor:pointer; font-size:1rem; padding:2px 6px;">✕</button>
+      </div>
+      <div id="adminTabComments" style="overflow-y:auto; flex:1; padding:0.6rem 0;">
+        <div id="adminList"></div>
+      </div>
+      <div id="adminTabShare" style="display:none; padding:1.6rem; text-align:center; overflow-y:auto; flex:1;">
+        <p style="color:rgba(160,140,100,0.5); font-size:0.72rem; letter-spacing:1.5px; margin-bottom:1rem;">SHARE LINK</p>
+        <div id="adminQrCode" style="display:inline-block; background:white; padding:10px; border-radius:10px; margin-bottom:0.8rem;"></div>
+        <div id="adminShareUrl" style="color:rgba(160,140,100,0.4); font-size:0.72rem; word-break:break-all; margin-bottom:1rem; padding:0 1rem;"></div>
+        <button onclick="copyShareLink()" style="background:rgba(120,100,60,0.2); border:1px solid rgba(120,100,60,0.3); color:rgba(200,180,130,0.7); border-radius:8px; padding:8px 24px; font-size:0.85rem; cursor:pointer;">🔗 Copy Link</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- SOURCE BOX -->
+<div id="sourceBox" class="hidden">
+  <div class="src-card">
+    <div class="src-icon">🌍</div>
+    <h2 data-key="tellStory">Tell Us Your Story</h2>
+    <p data-key="discoverGems">How did you discover these hidden gems?</p>
+    <div class="src-divider"></div>
+    <div class="src-options">
+      <div class="src-option" onclick="selectSource(this)">
+        <span class="src-opt-icon">🎓</span>
+        <span data-key="optSchool">School project</span>
+      </div>
+      <div class="src-option" onclick="selectSource(this)">
+        <span class="src-opt-icon">👥</span>
+        <span data-key="optFriend">Friend</span>
+      </div>
+      <div class="src-option" onclick="selectSource(this)">
+        <span class="src-opt-icon">📱</span>
+        <span data-key="optSocial">Social media</span>
+      </div>
+      <div class="src-option" onclick="selectSource(this)">
+        <span class="src-opt-icon">🔍</span>
+        <span data-key="optSearch">Search engine</span>
+      </div>
+      <div class="src-option wide" onclick="selectSource(this)">
+        <span class="src-opt-icon">✨</span>
+        <span data-key="optOther">Other</span>
+      </div>
+    </div>
+    <button class="src-btn" onclick="finishLogin()" data-key="exploreBtn">Explore Jordan</button>
+  </div>
+</div>
+
+<!-- BOOKING MODAL -->
+<div id="bookingModal" class="modal-overlay hidden">
+  <div class="modal-box">
+    <h3 data-key="chooseSeason">🗓️ Choose Your Season</h3>
+    <p data-key="chooseSeasonDesc">When are you planning to visit Jordan?</p>
+    <div class="modal-options">
+      <button class="modal-month-btn" onclick="selectMonth(this)">🌸 Spring</button>
+      <button class="modal-month-btn" onclick="selectMonth(this)">☀️ Summer</button>
+      <button class="modal-month-btn" onclick="selectMonth(this)">🍂 Autumn</button>
+      <button class="modal-month-btn" onclick="selectMonth(this)">❄️ Winter</button>
+    </div>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="closeBookingModal()" data-key="close">Cancel</button>
+      <button class="modal-confirm" onclick="confirmBooking()" data-key="bookBtn">Book My Flight ✈️</button>
+    </div>
+  </div>
+</div>
+
+<!-- BROKE MODAL -->
+<div id="brokeModal" class="modal-overlay hidden">
+  <div class="modal-box broke-modal-box">
+    <h3 data-key="disappointing">Disappointing...</h3>
+    <img src="https://images.pexels.com/photos/8472093/pexels-photo-8472093.jpeg?auto=compress&cs=tinysrgb&w=400" alt="Frustrated Traveler">
+    <p data-key="brokeMsg">Maybe next time, traveler. Jordan will wait for you! 🇯🇴</p>
+    <div class="modal-actions">
+      <button class="modal-cancel" onclick="document.getElementById('brokeModal').classList.add('hidden')" data-key="close">Close</button>
+    </div>
+  </div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar" class="hidden">
+  <div class="navbar-logo" onclick="showHiddenGems()">🇯🇴 Hidden <span>Gems</span></div>
+  <div class="navbar-right">
+    <select id="langSelect" onchange="changeLanguage()">
+      <option value="en">🇬🇧 English</option>
+      <option value="ar">🇯🇴 العربية</option>
+      <option value="fr">🇫🇷 Français</option>
+      <option value="es">🇪🇸 Español</option>
+      <option value="hi">🇮🇳 हिन्दी</option>
+      <option value="zh">🇨🇳 中文</option>
+    </select>
+    <span class="dark-toggle-label" id="darkLabel">Light</span>
+    <button class="dark-toggle" onclick="toggleDarkMode()" id="darkBtn" aria-label="Toggle dark mode"></button>
+  </div>
+</nav>
+
+<!-- FUN FACTS TICKER (hidden until login) -->
+<div id="funFactsTicker" class="fun-facts-bar hidden">
+  <div class="fun-facts-inner" id="tickerInner"></div>
+</div>
+
+<!-- MAIN PAGE -->
+<div id="hiddenGemsPage" class="hidden">
+  <section id="heroSection">
+    <div class="hero-tag" data-key="heroTag">Jordan · Hidden Gems</div>
+    <h1 class="hero-title" data-key="heroTitle">Discover the <em>Hidden Gems</em> of Jordan</h1>
+    <p class="hero-sub" data-key="heroSub">From rose-red cities carved in rock to star-filled desert skies — twelve extraordinary places most travelers never find.</p>
+    <div class="hero-meta">
+      <div class="hero-player-chip">
+        <span class="dot"></span>
+        <span data-key="exploringAs">Exploring as</span>&nbsp;<strong id="activePlayer">Guest</strong>
+      </div>
+      <div class="weather-chip" id="weatherChip">
+        ☀️ <span id="temp">—</span> &nbsp;|&nbsp; <span id="weatherDesc">Amman</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="page-section" style="padding-bottom:0;">
+    <div class="page-nav">
+      <button class="active" onclick="showHiddenGems()" data-key="navGems">Hidden Gems</button>
+      <button onclick="showAbout()" data-key="navAbout">About Jordan</button>
+      <button onclick="showAboutMe()" data-key="navAboutMe">About Me</button>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="section-header">
+      <span class="section-label" data-key="gemsLabel">Twelve Places Worth Finding</span>
+      <h2 class="section-title" data-key="gemsTitle">The Hidden Gems</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div id="places" class="gems-grid"></div>
+  </div>
+
+  <div class="page-section">
+    <div class="section-header">
+      <span class="section-label" data-key="gameLabel">Play &amp; Compete</span>
+      <h2 class="section-title" data-key="gameTitle">Gem Hunter</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="game-wrap">
+      <div class="game-header">
+        <div>
+          <h2 data-key="gameSubTitle">Collect the Gems!</h2>
+          <p data-key="gameDesc">Click gems fast — avoid the broken stars. Trophies score big.</p>
+        </div>
+        <div class="game-stats">
+          <div class="stat-chip"><span data-key="timerLabel">Time:</span> <strong id="gameTimer">10</strong>s</div>
+          <div class="stat-chip"><span data-key="score">Score:</span> <strong id="gameScore">0</strong></div>
+        </div>
+      </div>
+      <div class="game-body">
+        <div style="display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-bottom:16px;">
+          <button class="game-start-btn" onclick="startGame()" data-key="startBtn">▶ Start Game</button>
+          <div class="game-warning">⚠️ <span data-key="gameWarning">Broken Stars 💥 cost 3 points! Trophies 🏆 score 5!</span></div>
+        </div>
+        <div id="miniGame"></div>
+        <div class="leaderboard-grid">
+          <div class="lb-card">
+            <h4 data-key="leaderboard">🏆 Leaderboard</h4>
+            <div id="leaderboard"><p style="color:var(--muted);font-size:0.85rem;" data-key="noGamesYet">No games played yet.</p></div>
+          </div>
+          <div class="lb-card">
+            <h4 data-key="bestMonth">⭐ Best This Month</h4>
+            <p id="bestMonthText" style="color:var(--muted);font-size:0.88rem;" data-key="noRecord">No record yet</p>
+            <div class="achievement-row">
+              <div class="achievement-badge" id="miniGameProBadge">💎</div>
+              <div>
+                <div style="font-size:0.88rem;font-weight:600;" data-key="achieveTitle">Mini Game Pro</div>
+                <div id="miniGameProStatus" style="font-size:0.8rem;color:var(--muted);" data-key="proLocked">Score 20+ to unlock</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="section-header">
+      <span class="section-label" data-key="reviewLabel">Share Your Thoughts</span>
+      <h2 class="section-title" data-key="rateUs">Rate &amp; Review</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="review-wrap">
+      <textarea class="review-textarea" id="review" placeholder="Write your opinion about Jordan..."></textarea>
+      <button class="submit-btn" onclick="submitReview()" data-key="submit">Submit Review</button>
+      <p class="review-msg" id="reviewMsg"></p>
+      <div style="margin-top:20px; display:flex; align-items:center; gap:10px;">
+        <span class="visit-pill" id="visitPill">👁️ —</span>
+      </div>
+      <div id="commentsWall"></div>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="share-wrap">
+      <h2 data-key="shareProj">📱 Share This Project</h2>
+      <p data-key="scanView">Scan the QR code to open the live site on any device.</p>
+      <div id="qrcode">https://pnqv56wdqf-sys.github.io/r/</div>
+      <button class="share-copy-btn" id="copyBtn" onclick="copyShareLink()">🔗 Copy Link</button>
+    </div>
+  </div>
+
+  <footer>Created with ❤️ by <span>Essam Samer</span></footer>
+</div>
+
+<!-- ABOUT JORDAN PAGE -->
+<div id="aboutPage" class="hidden">
+  <div class="about-hero">
+    <div class="about-hero-content">
+      <div class="hero-tag" style="margin-bottom:16px;" data-key="aboutLabel">About the Kingdom</div>
+      <h1 data-key="aboutTitle">Discover the Wonders of Jordan!</h1>
+      <p data-key="aboutDesc">From ancient cities to stunning deserts, Jordan is full of hidden gems waiting to be explored. Let's take a journey!</p>
+      <div class="about-hero-actions">
+        <button class="ah-btn ah-btn-primary" onclick="showHiddenGems()" data-key="backGems">← Back to Gems</button>
+        <button class="ah-btn ah-btn-outline" onclick="shuffleAboutCards()" data-key="shuffleFacts">🔀 Shuffle Facts</button>
+        <button class="ah-btn ah-btn-outline" onclick="startEmojiRain()" data-key="rainBtn">🐪 Jordanian Rain!</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="page-section">
+    <div class="proverb-strip">
+      <span class="proverb-text" id="proverbDisplay">"Marhaba" — Hello!</span>
+      <button class="proverb-btn" onclick="newProverb()" data-key="newProverb">New Proverb ✨</button>
+    </div>
+
+    <div class="about-cards" id="aboutCardContainer">
+      <div class="about-card">
+        <img src="https://images.pexels.com/photos/2070485/pexels-photo-2070485.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Jordan Safe">
+        <div class="about-card-body">
+          <h2 data-key="qSafe">Is Jordan Safe?</h2>
+          <p data-key="aSafe1">Jordan is very safe for tourists. You can explore cities, nature reserves, and deserts without worry.</p>
+          <p data-key="aSafe2">Tourists often praise the welcoming and helpful locals, making their stay even more memorable.</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <img src="https://images.pexels.com/photos/1670180/pexels-photo-1670180.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Jordan Expensive">
+        <div class="about-card-body">
+          <h2 data-key="qExp">Is Jordan Expensive?</h2>
+          <p data-key="aExp1">Eating local food is cheap — a falafel sandwich costs less than $1!</p>
+          <p data-key="aExp2">By choosing local restaurants and public transportation, visitors can experience Jordan without spending a fortune.</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <img src="https://images.pexels.com/photos/2233729/pexels-photo-2233729.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Jordanian Food">
+        <div class="about-card-body">
+          <h2 data-key="qFood">Is Jordanian Food Good?</h2>
+          <p data-key="aFood1">The food is legendary! From Mansaf (the national dish) to fresh falafel and hummus, your taste buds will be delighted.</p>
+          <p data-key="aFood2">Don't forget to try the sweet Kunafa in downtown Amman — it's the ultimate Jordanian dessert experience.</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <img src="https://images.pexels.com/photos/1595385/pexels-photo-1595385.jpeg?auto=compress&cs=tinysrgb&w=800" alt="English in Jordan">
+        <div class="about-card-body">
+          <h2 data-key="qLang">Is English Spoken in Jordan?</h2>
+          <p data-key="aLang1">Yes, English is widely understood, especially in tourist areas and among the younger generation.</p>
+          <p data-key="aLang2">While Arabic is the official language, most Jordanians are happy to communicate in English.</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <img src="https://images.pexels.com/photos/4388164/pexels-photo-4388164.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Jordan History">
+        <div class="about-card-body">
+          <h2 data-key="qHist">Is Jordan Full of History?</h2>
+          <p data-key="aHist1">Jordan is an open-air museum, home to Nabataeans, Romans, Byzantines, and Umayyads — civilizations that shaped the world.</p>
+          <p data-key="aHist2">Visit the Roman Theatre in Amman or the ancient city of Jerash to see history come alive before your eyes.</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <img src="https://images.pexels.com/photos/2041556/pexels-photo-2041556.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Jordan Culture">
+        <div class="about-card-body">
+          <h2 data-key="qRelig">Is Jordan Culturally Diverse?</h2>
+          <p data-key="aRelig1">Jordan is a model of religious coexistence, where mosques and churches stand side-by-side in harmony.</p>
+          <p data-key="aRelig2">Visitors are welcomed regardless of background, reflecting a deep tradition of hospitality — "Diyafa" — that defines Jordanian culture.</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <img src="https://images.pexels.com/photos/14017359/pexels-photo-14017359.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Jordan Nature">
+        <div class="about-card-body">
+          <h2 data-key="qNature">Is Jordan Only a Desert?</h2>
+          <p data-key="aNature1">Not at all! Jordan has lush green pine and oak forests in Ajloun, the unique Dead Sea shoreline, and the vibrant coral reefs of Aqaba.</p>
+          <p data-key="aNature2">From diving in Aqaba to canyoning in Wadi Mujib, the landscape is incredibly diverse from north to south.</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <img src="https://images.pexels.com/photos/13458330/pexels-photo-13458330.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Jordan Desert">
+        <div class="about-card-body">
+          <h2>Is Wadi Rum Worth It?</h2>
+          <p>Absolutely! Wadi Rum is so otherworldly that NASA uses it to simulate Martian landscapes, and it's been the filming location for many blockbuster movies.</p>
+          <p>Sleeping under the stars in a Bedouin camp here is one of the most unforgettable experiences on Earth.</p>
+        </div>
+      </div>
+      <div class="about-card">
+        <img src="https://images.pexels.com/photos/23124610/pexels-photo-23124610.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Petra">
+        <div class="about-card-body">
+          <h2>Is Petra Really a Wonder?</h2>
+          <p>Yes — Petra is one of the New Seven Wonders of the World, and the UNESCO calls it "one of the most precious cultural properties of man's cultural heritage."</p>
+          <p>The Treasury (Al-Khazneh) is carved entirely into a rose-red cliff and stands 43 metres tall — a true feat of ancient engineering.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- JORDAN BY THE NUMBERS -->
+    <div class="stats-section">
+      <div class="section-header">
+        <span class="section-label">By the Numbers</span>
+        <h2 class="section-title">Jordan at a Glance</h2>
+        <div class="section-divider"></div>
+      </div>
+      <div class="stats-grid" id="statsGrid">
+        <div class="stat-card">
+          <span class="stat-icon">🌊</span>
+          <span class="stat-number" data-target="430" data-suffix="m">0</span>
+          <div class="stat-label">Below sea level — the Dead Sea, Earth's lowest point</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">🏛️</span>
+          <span class="stat-number" data-target="10000" data-suffix="+">0</span>
+          <div class="stat-label">Years of continuous civilisation in the region</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">🌿</span>
+          <span class="stat-number" data-target="2000" data-suffix="+">0</span>
+          <div class="stat-label">Wild plant species — more than the British Isles</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">☀️</span>
+          <span class="stat-number" data-target="300" data-suffix="+">0</span>
+          <div class="stat-label">Sunny days per year in Aqaba</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">🏆</span>
+          <span class="stat-number" data-target="7" data-suffix="">0</span>
+          <div class="stat-label">UNESCO World Heritage Sites</div>
+        </div>
+        <div class="stat-card">
+          <span class="stat-icon">🦅</span>
+          <span class="stat-number" data-target="500" data-suffix="+">0</span>
+          <div class="stat-label">Bird species passing through Jordan each year</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- JORDAN TRIVIA QUIZ -->
+    <div class="quiz-wrap" id="jordanQuiz">
+      <div class="quiz-header">
+        <h2>🎯 Jordan Trivia Challenge</h2>
+        <p>Think you know Jordan? Put your knowledge to the test!</p>
+      </div>
+      <div class="quiz-progress-bar"><div class="quiz-progress-fill" id="quizProgressFill"></div></div>
+      <div class="quiz-body" id="quizBody">
+        <div class="quiz-q-num" id="quizQNum">Question 1 of 8</div>
+        <div class="quiz-question" id="quizQuestion"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <button class="quiz-next-btn" id="quizNextBtn" onclick="quizNext()">Next Question →</button>
+      </div>
+      <div class="quiz-result" id="quizResult">
+        <div class="big-score" id="quizFinalScore"></div>
+        <h3 id="quizResultTitle"></h3>
+        <p id="quizResultMsg"></p>
+        <button class="quiz-restart-btn" onclick="quizRestart()">🔁 Try Again</button>
+      </div>
+    </div>
+
+  </div>
+  <footer>Created with ❤️ by <span>Essam Samer</span></footer>
+</div>
+
+<!-- ABOUT ME PAGE -->
+<div id="aboutMePage" class="hidden">
+  <div class="aboutme-hero">
+    <div class="aboutme-hero-content">
+      <div class="aboutme-avatar">👤</div>
+      <h1>Essam Samer</h1>
+      <span class="role" data-key="amRole">Student · Web Developer · Jordan Enthusiast 🇯🇴</span>
+      <p data-key="amBio">Hi! I'm Essam, a student who is in Qatar Doha and im in grade 10, passionate about Jordan's rich history and culture. I built this project to share the hidden beauty of my country with the world — places that guidebooks often overlook but locals treasure deeply.</p>
+      <div class="social-links">
+        <a href="https://github.com/" target="_blank" class="social-link">🐙 GitHub</a>
+        <a href="mailto:essamsamer1234@gmail.com" class="social-link">📧 Contact Me</a>
+        <a href="https://pnqv56wdqf-sys.github.io/d/" target="_blank" class="social-link">🌐 Live Site</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="skills-section">
+    <div class="page-nav" style="max-width:300px;">
+      <button onclick="showHiddenGems()" data-key="backGems" style="flex:unset;padding:10px 16px;">← Back to Gems</button>
+      <button onclick="showAbout()" data-key="navAbout" style="flex:unset;padding:10px 16px;">About Jordan</button>
+    </div>
+
+    <div class="section-header" style="margin-top:40px;">
+      <span class="section-label" data-key="amSkillsLabel">What I Know</span>
+      <h2 class="section-title" data-key="amSkillsTitle">Skills &amp; Interests</h2>
+      <div class="section-divider"></div>
+    </div>
+
+    <div class="skills-grid">
+      <div class="skill-card">
+        <span class="skill-icon">💻</span>
+        <h3 data-key="amSkill1Title">Web Development</h3>
+        <p data-key="amSkill1Desc">Building interactive websites using HTML, CSS, and JavaScript — from design to deployment.</p>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🎨</span>
+        <h3 data-key="amSkill2Title">UI Design</h3>
+        <p data-key="amSkill2Desc">Creating clean, modern interfaces that are both beautiful and easy to use.</p>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🏺</span>
+        <h3 data-key="amSkill3Title">Jordanian History</h3>
+        <p data-key="amSkill3Desc">Deep knowledge of Jordan's archaeological sites, cultures, and heritage spanning thousands of years.</p>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">📸</span>
+        <h3 data-key="amSkill4Title">Photography</h3>
+        <p data-key="amSkill4Desc">Capturing the stunning landscapes and ancient monuments that make Jordan truly unique.</p>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🌍</span>
+        <h3 data-key="amSkill5Title">Multilingual</h3>
+        <p data-key="amSkill5Desc">Communicating in Arabic and English, making this project accessible to visitors worldwide.</p>
+      </div>
+      <div class="skill-card">
+        <span class="skill-icon">🗺️</span>
+        <h3 data-key="amSkill6Title">Travel &amp; Exploration</h3>
+        <p data-key="amSkill6Desc">Personally visiting and documenting many of Jordan's lesser-known but incredible sites.</p>
+      </div>
+    </div>
+
+    <div class="about-me-quote">
+      <blockquote data-key="amQuote">"Jordan is not just a place — it's a feeling. Once it touches your heart, you never truly leave."</blockquote>
+      <cite>— Essam Samer</cite>
+    </div>
+
+    <div class="contact-bar">
+      <div>
+        <h3 data-key="amContactTitle">Want to collaborate?</h3>
+        <p data-key="amContactDesc">I'm open to school projects, creative collaborations, and any Jordan-related adventures!</p>
+      </div>
+      <a href="mailto:essamsamer1234@gmail.com" class="contact-btn" data-key="amContactBtn">📬 Get In Touch</a>
+    </div>
+  </div>
+  <footer>Created with ❤️ by <span>Essam Samer</span></footer>
+</div>
+
+<script>
+/* ===== INTRO PARTICLE CANVAS ===== */
+(function() {
+  const canvas = document.getElementById('introCanvas');
+  const ctx = canvas.getContext('2d');
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resize();
+  window.addEventListener('resize', resize);
+  const COLORS = ['#f5c842','#e8a020','#ffffff','#c8860a','#ffd700'];
+  const particles = Array.from({length:160}, () => ({
+    x: Math.random() * canvas.width, y: Math.random() * canvas.height,
+    r: Math.random() * 2.2 + 0.4,
+    color: COLORS[Math.floor(Math.random() * COLORS.length)],
+    speedX: (Math.random()-0.5)*0.3, speedY: (Math.random()-0.5)*0.3,
+    alpha: Math.random()*0.7+0.3,
+    twinkle: Math.random()*Math.PI*2, twinkleSpeed: Math.random()*0.04+0.01
+  }));
+
+  /* Shooting stars */
+  const shootingStars = [];
+  let shootTimer = 0;
+  function maybeSpawnStar() {
+    shootTimer++;
+    if (shootTimer > 120 && Math.random() < 0.012) {
+      shootTimer = 0;
+      const startX = Math.random() * canvas.width * 0.8 + canvas.width * 0.05;
+      const startY = Math.random() * canvas.height * 0.35;
+      shootingStars.push({
+        x: startX, y: startY,
+        len: Math.random() * 110 + 70,
+        speed: Math.random() * 9 + 7,
+        alpha: 1,
+        angle: Math.PI / 4 + (Math.random() - 0.5) * 0.25,
+        width: Math.random() * 1.5 + 1
+      });
+    }
+  }
+  function drawShootingStars() {
+    for (let i = shootingStars.length - 1; i >= 0; i--) {
+      const s = shootingStars[i];
+      const dx = Math.cos(s.angle) * s.len;
+      const dy = Math.sin(s.angle) * s.len;
+      const grad = ctx.createLinearGradient(s.x, s.y, s.x - dx, s.y - dy);
+      grad.addColorStop(0, `rgba(255,225,110,${s.alpha})`);
+      grad.addColorStop(0.4, `rgba(255,200,80,${s.alpha * 0.5})`);
+      grad.addColorStop(1, 'rgba(255,200,80,0)');
+      ctx.beginPath();
+      ctx.moveTo(s.x, s.y);
+      ctx.lineTo(s.x - dx, s.y - dy);
+      ctx.strokeStyle = grad;
+      ctx.lineWidth = s.width;
+      ctx.globalAlpha = s.alpha;
+      ctx.stroke();
+      ctx.globalAlpha = 1;
+      /* tiny glow dot at tip */
+      ctx.beginPath();
+      ctx.arc(s.x, s.y, s.width * 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(255,240,160,${s.alpha})`;
+      ctx.fill();
+      s.x += s.speed * Math.cos(s.angle);
+      s.y += s.speed * Math.sin(s.angle);
+      s.alpha -= 0.022;
+      if (s.alpha <= 0 || s.x > canvas.width + 50 || s.y > canvas.height + 50) {
+        shootingStars.splice(i, 1);
+      }
+    }
+  }
+
+  /* Subtle vignette overlay */
+  function drawVignette() {
+    const grad = ctx.createRadialGradient(
+      canvas.width/2, canvas.height/2, canvas.height * 0.2,
+      canvas.width/2, canvas.height/2, canvas.width * 0.8
+    );
+    grad.addColorStop(0, 'rgba(0,0,0,0)');
+    grad.addColorStop(1, 'rgba(0,0,0,0.35)');
+    ctx.fillStyle = grad;
+    ctx.fillRect(0, 0, canvas.width, canvas.height);
+  }
+
+  function draw() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    drawVignette();
+    maybeSpawnStar();
+    drawShootingStars();
+    particles.forEach(p => {
+      p.twinkle += p.twinkleSpeed;
+      const size = p.r * (0.85 + 0.15 * Math.sin(p.twinkle * 1.3));
+      ctx.beginPath(); ctx.arc(p.x, p.y, size, 0, Math.PI*2);
+      ctx.fillStyle = p.color; ctx.globalAlpha = p.alpha*(0.6+0.4*Math.sin(p.twinkle)); ctx.fill(); ctx.globalAlpha = 1;
+      p.x += p.speedX; p.y += p.speedY;
+      if (p.x < 0) p.x = canvas.width; if (p.x > canvas.width) p.x = 0;
+      if (p.y < 0) p.y = canvas.height; if (p.y > canvas.height) p.y = 0;
+    });
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+/* ===== TRANSLATIONS ===== */
+const translations = {
+  en: {
+    disappointing:"Disappointing...",brokeMsg:"Maybe next time, traveler. Jordan will wait for you! 🇯🇴",close:"Close",
+    tellStory:"🌍 Tell Us Your Story",discoverGems:"How did you discover these hidden gems?",
+    optSchool:"School project",optFriend:"Friend",optSocial:"Social media",optSearch:"Search engine",optOther:"Other",
+    exploreBtn:"Explore Jordan",
+    heroTag:"Jordan · Hidden Gems",heroTitle:"Discover the Hidden Gems of Jordan",
+    heroSub:"From rose-red cities carved in rock to star-filled desert skies — twelve extraordinary places most travelers never find.",
+    exploringAs:"Exploring as",
+    navGems:"Hidden Gems",navAbout:"About Jordan",navAboutMe:"About Me",
+    gemsLabel:"Twelve Places Worth Finding",gemsTitle:"The Hidden Gems",
+    gameLabel:"Play & Compete",gameTitle:"Gem Hunter",gameSubTitle:"Collect the Gems!",
+    gameDesc:"Click gems fast — avoid the broken stars. Trophies score big.",
+    timerLabel:"Time:",score:"Score:",startBtn:"▶ Start Game",
+    gameWarning:"Broken Stars 💥 cost 3 points! Trophies 🏆 score 5!",
+    leaderboard:"🏆 Leaderboard",noGamesYet:"No games played yet.",
+    bestMonth:"⭐ Best This Month",noRecord:"No record yet",
+    achieveTitle:"Mini Game Pro",proLocked:"Score 20+ to unlock",
+    reviewLabel:"Share Your Thoughts",rateUs:"Rate & Review",
+    reviewPlaceholder:"Write your opinion about Jordan...",submit:"Submit Review",
+    shareProj:"📱 Share This Project",scanView:"Scan the QR code to open the live site on any device.",
+    chooseSeason:"🗓️ Choose Your Season",chooseSeasonDesc:"When are you planning to visit Jordan?",
+    bookBtn:"Book My Flight ✈️",
+    aboutLabel:"About the Kingdom",aboutTitle:"Discover the Wonders of Jordan!",
+    aboutDesc:"From ancient cities to stunning deserts, Jordan is full of hidden gems waiting to be explored.",
+    backGems:"← Back to Gems",shuffleFacts:"🔀 Shuffle Facts",rainBtn:"🐪 Jordanian Rain!",
+    newProverb:"New Proverb ✨",
+    funFact:"⭐ Fun Fact:",
+    qSafe:"Is Jordan Safe?",aSafe1:"Jordan is very safe for tourists.",aSafe2:"Locals are welcoming and helpful.",
+    qExp:"Is Jordan Expensive?",aExp1:"Local food is cheap — falafel under $1!",aExp2:"Local transport saves a lot of money.",
+    qFood:"Is Jordanian Food Good?",aFood1:"Legendary! Try the Mansaf — the national dish.",aFood2:"Kunafa is the must-try dessert!",
+    qLang:"Is English Spoken?",aLang1:"Yes, widely understood in cities.",aLang2:"Locals are happy to speak English.",
+    qHist:"Is Jordan Full of History?",aHist1:"It's an open-air museum.",aHist2:"Jerash and Amman hold incredible ruins.",
+    qRelig:"Is Jordan Culturally Diverse?",aRelig1:"A model of religious coexistence.",aRelig2:"Hospitality (Diyafa) is a core cultural value.",
+    qNature:"Is Jordan Only a Desert?",aNature1:"No — forests, reefs, and canyons too.",aNature2:"North to South diversity is amazing.",
+    bestTime:"Best time:",weather:"Weather:",calcBtn:"Calculate",bookBtnCard:"Book Flight",passengers:"Passengers:",pricePer:"Price/person (USD):",mapBtn:"🗺️ Map",
+    petraDesc:"An archaeological wonder in southern Jordan, famous for its rose-red rock-cut architecture and ancient Nabataean water systems.",
+    wadiRumDesc:"A surreal valley of sandstone and granite so alien it's doubled as Mars in films. Bedouin camps under a million stars await.",
+    danaDesc:"Jordan's largest nature reserve, with rugged mountains, dramatic cliffs, and extraordinary biodiversity across four bio-geographical zones.",
+    ajlounDesc:"A lush Mediterranean landscape of oak, pine and pistachio forests, crowned by a magnificent 12th-century Crusader-era castle.",
+    qasrDesc:"A stunning early Islamic desert complex featuring intricate mosaics, frescoes, and a rare ancient bathhouse.",
+    pellaDesc:"One of the longest continuously inhabited sites on Earth, with panoramic views and 6,000 years of layered history.",
+    mujibDesc:"A breathtaking river canyon descending to the Dead Sea — the world's lowest outdoor adventure trail at 410m below sea level.",
+    ummDesc:"A ghost city built entirely of black basalt, giving it a hauntingly beautiful monochrome character unlike any other ancient site.",
+    umAlNamlDesc:"A lush rolling landscape especially magical in spring, celebrated for wildflowers, rich biodiversity, and peaceful countryside.",
+    deadsea:"Float effortlessly on the saltiest body of water on Earth, 430 metres below sea level. The mineral-rich mud is famous for skin benefits.",
+    jerash:"One of the best-preserved Roman cities outside Italy, featuring towering colonnaded streets, temples, and a 15,000-seat hippodrome.",
+    aqaba:"Jordan's only coastal city offers world-class diving in crystal Red Sea waters with colourful coral reefs and warm year-round temperatures.",
+    bestTimePetra:"Spring & Autumn",weatherPetra:"Warm days, cool evenings",
+    bestTimeWadiRum:"All year",weatherWadiRum:"Great for adventure",
+    bestTimeDana:"Spring & Autumn",weatherDana:"Mild & pleasant",
+    bestTimeAjloun:"Spring",weatherAjloun:"Cool & green",
+    bestTimeQasr:"Autumn",weatherQasr:"Dry desert air",
+    bestTimePella:"Winter / Spring",weatherPella:"Green hills",
+    bestTimeMujib:"Summer",weatherMujib:"Wet canyon adventure",
+    bestTimeUmm:"Winter",weatherUmm:"Black basalt stone",
+    bestTimeUmAlNaml:"Spring",weatherUmAlNaml:"Green & lush",
+    bestTimeDeadSea:"All year",weatherDeadSea:"Warm & sunny",
+    bestTimeJerash:"Spring & Autumn",weatherJerash:"Pleasant & cool",
+    bestTimeAqaba:"All year",weatherAqaba:"Warm, great for diving",
+    amRole:"Student · Web Developer · Jordan Enthusiast 🇯🇴",
+    amBio:"Hi! I'm Essam, a student in Qatar Doha in grade 10, passionate about Jordan's rich history and culture. I built this project to share the hidden beauty of my country with the world — places that guidebooks often overlook but locals treasure deeply.",
+    amSkillsLabel:"What I Know",amSkillsTitle:"Skills & Interests",
+    amSkill1Title:"Web Development",amSkill1Desc:"Building interactive websites using HTML, CSS, and JavaScript — from design to deployment.",
+    amSkill2Title:"UI Design",amSkill2Desc:"Creating clean, modern interfaces that are both beautiful and easy to use.",
+    amSkill3Title:"Jordanian History",amSkill3Desc:"Deep knowledge of Jordan's archaeological sites, cultures, and heritage spanning thousands of years.",
+    amSkill4Title:"Photography",amSkill4Desc:"Capturing the stunning landscapes and ancient monuments that make Jordan truly unique.",
+    amSkill5Title:"Multilingual",amSkill5Desc:"Communicating in Arabic and English, making this project accessible to visitors worldwide.",
+    amSkill6Title:"Travel & Exploration",amSkill6Desc:"Personally visiting and documenting many of Jordan's lesser-known but incredible sites.",
+    amQuote:'"Jordan is not just a place — it\'s a feeling. Once it touches your heart, you never truly leave."',
+    amContactTitle:"Want to collaborate?",amContactDesc:"I'm open to school projects, creative collaborations, and any Jordan-related adventures!",amContactBtn:"📬 Get In Touch",
+    introTitle:"Hidden Gems in Jordan",introSub:"Where history lives",introWelcome:"Welcome, Traveler",introDesc:"Enter your name to begin your journey",introBtn:"✨ Start My Journey",introPlaceholder:"Your name...",
+    facts:[
+      "🌊 The Dead Sea is 430 metres below sea level — the lowest point on Earth's surface!",
+      "🏛️ Petra was lost to the Western world for nearly 300 years before being rediscovered in 1812.",
+      "🚀 NASA uses Wadi Rum to simulate Mars missions because the landscape is so alien!",
+      "🌿 Jordan has over 2,000 species of wild plants, more than the entire British Isles.",
+      "💧 The Dead Sea is 10 times saltier than regular ocean water — nothing lives in it.",
+      "🏆 Petra is one of the New Seven Wonders of the World, voted by 100 million people.",
+      "🦅 Jordan lies on one of the world's major bird migration flyways — hundreds of species pass through.",
+      "🎬 Wadi Rum has been the filming location for The Martian, Lawrence of Arabia, and Rogue One.",
+      "⛏️ The Nabataeans who built Petra were master hydraulic engineers — their water system served 30,000 people.",
+      "🌙 The Jordanian flag's colours represent the Arab Revolt, Islamic faith, and the bright future.",
+      "🐪 Bedouin tradition of hospitality (Diyafa) means a guest must never be turned away, even a stranger.",
+      "🏊 You literally cannot sink in the Dead Sea — the salt makes you float automatically!",
+      "🌡️ Aqaba has over 300 sunny days per year — one of the sunniest cities in the world.",
+      "🗿 Jerash is one of the best-preserved Roman cities outside of Rome itself.",
+      "🦁 The Arabian leopard once roamed Jordan — conservation efforts are working to protect remaining wildlife.",
+      "🍞 Mansaf, Jordan's national dish, is served on a communal platter and eaten with the right hand.",
+      "🌺 In spring, the Jordanian hills burst with over 1,700 species of wildflowers.",
+      "⚡ Jordan is investing heavily in solar and wind energy — a leader in renewable energy in the region."
+    ]
+  },
+  ar: {
+    disappointing:"مخيب للآمال...",brokeMsg:"ربما في المرة القادمة أيها المسافر.",close:"إغلاق",
+    tellStory:"🌍 أخبرنا قصتك",discoverGems:"كيف اكتشفت هذه الجواهر الخفية؟",
+    optSchool:"مشروع مدرسي",optFriend:"صديق",optSocial:"وسائل التواصل",optSearch:"محرك بحث",optOther:"آخر",
+    exploreBtn:"استكشف الأردن",
+    heroTag:"الأردن · جواهر خفية",heroTitle:"اكتشف الجواهر الخفية في الأردن",
+    heroSub:"من مدن الصخر الوردي إلى سماء الصحراء المرصعة بالنجوم.",
+    exploringAs:"تستكشف بصفتك",
+    navGems:"الجواهر الخفية",navAbout:"عن الأردن",navAboutMe:"عني",
+    gemsLabel:"اثنا عشر مكاناً تستحق الاكتشاف",gemsTitle:"الجواهر الخفية",
+    gameLabel:"العب وتنافس",gameTitle:"صائد الجواهر",gameSubTitle:"اجمع الجواهر!",
+    gameDesc:"انقر بسرعة — تجنب النجوم المكسورة.",
+    timerLabel:"الوقت:",score:"النتيجة:",startBtn:"▶ ابدأ اللعبة",
+    gameWarning:"النجوم المكسورة 💥 تخصم 3 نقاط! الكؤوس 🏆 تمنح 5!",
+    leaderboard:"🏆 المتصدرون",noGamesYet:"لا ألعاب بعد.",
+    bestMonth:"⭐ أفضل هذا الشهر",noRecord:"لا يوجد سجل",
+    achieveTitle:"محترف اللعبة",proLocked:"سجل 20+ لفتح الإنجاز",
+    reviewLabel:"شارك رأيك",rateUs:"قيّم وراجع",
+    reviewPlaceholder:"اكتب رأيك عن الأردن...",submit:"إرسال",
+    shareProj:"📱 شارك المشروع",scanView:"امسح الكود لفتح الموقع.",
+    chooseSeason:"🗓️ اختر موسمك",chooseSeasonDesc:"متى تخطط للزيارة؟",
+    bookBtn:"احجز رحلتي ✈️",
+    aboutLabel:"عن المملكة",aboutTitle:"اكتشف عجائب الأردن!",
+    aboutDesc:"من المدن القديمة إلى الصحاري، الأردن مليء بالجواهر المخفية.",
+    backGems:"← عودة للجواهر",shuffleFacts:"🔀 خلط الحقائق",rainBtn:"🐪 مطر أردني!",
+    newProverb:"مثل جديد ✨",
+    funFact:"⭐ حقيقة ممتعة:",
+    qSafe:"هل الأردن آمن؟",aSafe1:"الأردن آمن جداً للسياح.",aSafe2:"السكان ودودون ومتعاونون.",
+    qExp:"هل الأردن مكلف؟",aExp1:"الطعام المحلي رخيص جداً.",aExp2:"النقل المحلي يوفر المال.",
+    qFood:"هل الطعام الأردني جيد؟",aFood1:"أسطوري! جرب المنسف.",aFood2:"الكنافة لا تفوّت!",
+    qLang:"هل يُتحدث الإنجليزية؟",aLang1:"نعم، منتشرة في المدن.",aLang2:"السكان سعداء بالتواصل.",
+    qHist:"هل الأردن مليء بالتاريخ؟",aHist1:"متحف مفتوح للهواء.",aHist2:"جرش وعمان آثار رائعة.",
+    qRelig:"هل الأردن متنوع ثقافياً؟",aRelig1:"نموذج للتعايش الديني.",aRelig2:"الكرم قيمة محورية في الثقافة.",
+    qNature:"هل الأردن صحراء فقط؟",aNature1:"كلا، غابات وشعاب مرجانية.",aNature2:"التنوع مذهل من الشمال للجنوب.",
+    bestTime:"أفضل وقت:",weather:"الطقس:",calcBtn:"احسب",bookBtnCard:"احجز رحلة",passengers:"ركاب:",pricePer:"السعر/شخص:",mapBtn:"🗺️ خريطة",
+    petraDesc:"عجيبة أثرية في جنوب الأردن.",wadiRumDesc:"وادٍ سريالي من الحجر الرملي.",
+    danaDesc:"أكبر محمية طبيعية في الأردن.",ajlounDesc:"منطقة متوسطية خضراء.",
+    qasrDesc:"مجمع صحراوي إسلامي مبكر.",pellaDesc:"آثار قديمة تعود 6000 عام.",
+    mujibDesc:"وادٍ نهري إلى البحر الميت.",ummDesc:"مدينة من البازلت الأسود.",
+    umAlNamlDesc:"منطقة خضراء في الربيع.",
+    deadsea:"اطفُ فوق الماء في البحر الميت.",jerash:"مدينة رومانية محفوظة.",aqaba:"الغوص في البحر الأحمر.",
+    bestTimePetra:"الربيع والخريف",weatherPetra:"أيام دافئة وليالٍ باردة",
+    bestTimeWadiRum:"طوال العام",weatherWadiRum:"مثالي للمغامرة",
+    bestTimeDana:"الربيع والخريف",weatherDana:"معتدل وممتع",
+    bestTimeAjloun:"الربيع",weatherAjloun:"بارد وأخضر",
+    bestTimeQasr:"الخريف",weatherQasr:"صحراوي جاف",
+    bestTimePella:"الشتاء والربيع",weatherPella:"تلال خضراء",
+    bestTimeMujib:"الصيف",weatherMujib:"مغامرة مائية",
+    bestTimeUmm:"الشتاء",weatherUmm:"بازلت أسود",
+    bestTimeUmAlNaml:"الربيع",weatherUmAlNaml:"خضرة يانعة",
+    bestTimeDeadSea:"طوال العام",weatherDeadSea:"دافئ ومشمس",
+    bestTimeJerash:"الربيع والخريف",weatherJerash:"لطيف",
+    bestTimeAqaba:"طوال العام",weatherAqaba:"دافئ وجيد للغوص",
+    amRole:"طالب · مطور ويب · عاشق الأردن 🇯🇴",
+    amBio:"مرحبا! أنا عصام، طالب في الدوحة، قطر، في الصف العاشر، شغوف بتاريخ الأردن الغني وثقافته. بنيت هذا المشروع لأشارك العالم الجمال الخفي لبلدي — أماكن كثيراً ما تغفل عنها الكتب السياحية لكن يكنز لها السكان المحليون.",
+    amSkillsLabel:"ما أعرفه",amSkillsTitle:"المهارات والاهتمامات",
+    amSkill1Title:"تطوير الويب",amSkill1Desc:"بناء مواقع تفاعلية باستخدام HTML وCSS وJavaScript من التصميم إلى النشر.",
+    amSkill2Title:"تصميم الواجهات",amSkill2Desc:"إنشاء واجهات عصرية ونظيفة جميلة وسهلة الاستخدام.",
+    amSkill3Title:"التاريخ الأردني",amSkill3Desc:"معرفة عميقة بالمواقع الأثرية والثقافات والتراث الأردني عبر آلاف السنين.",
+    amSkill4Title:"التصوير الفوتوغرافي",amSkill4Desc:"التقاط المناظر الطبيعية الرائعة والآثار القديمة التي تجعل الأردن فريداً.",
+    amSkill5Title:"متعدد اللغات",amSkill5Desc:"التواصل بالعربية والإنجليزية لجعل هذا المشروع متاحاً للزوار من جميع أنحاء العالم.",
+    amSkill6Title:"السفر والاستكشاف",amSkill6Desc:"زيارة وتوثيق العديد من المواقع الأردنية الأقل شهرة والرائعة.",
+    amQuote:'"الأردن ليس مجرد مكان — إنه شعور. بمجرد أن يلمس قلبك، لن تغادره حقاً أبداً."',
+    amContactTitle:"هل تريد التعاون؟",amContactDesc:"أنا منفتح على المشاريع المدرسية والتعاونات الإبداعية وأي مغامرات تتعلق بالأردن!",amContactBtn:"📬 تواصل معي",
+    introTitle:"جواهر خفية في الأردن",introSub:"حيث يعيش التاريخ",introWelcome:"أهلاً بك، مسافر",introDesc:"أدخل اسمك لتبدأ رحلتك",introBtn:"✨ ابدأ رحلتي",introPlaceholder:"اسمك...",
+    facts:[
+      "🌊 البحر الميت يقع على عمق 430 متراً تحت مستوى سطح البحر — أخفض نقطة على سطح الأرض!",
+      "🏛️ ضاعت البتراء عن العالم الغربي لما يقارب 300 عام قبل اكتشافها عام 1812.",
+      "🚀 تستخدم ناسا وادي رم لمحاكاة مهمات المريخ لأن المنظر غريب تماماً!",
+      "🌿 يضم الأردن أكثر من 2000 نوع من النباتات البرية، أكثر من جزر بريطانيا بأكملها.",
+      "💧 البحر الميت أكثر ملوحة 10 مرات من ماء المحيط العادي — لا يعيش فيه أي شيء.",
+      "🏆 البتراء إحدى عجائب الدنيا السبع الجديدة، صوّت لها 100 مليون شخص.",
+      "🦅 يقع الأردن على أحد أكبر ممرات هجرة الطيور في العالم.",
+      "🎬 وادي رم كان موقع تصوير المريخي ولورنس العرب وروج وان.",
+      "⛏️ الأنباط بناة البتراء كانوا مهندسين هيدروليكيين بارعين — نظام مياههم خدم 30,000 شخص.",
+      "🌙 ألوان العلم الأردني تمثل الثورة العربية والإيمان الإسلامي والمستقبل المشرق.",
+      "🐪 تقليد الضيافة البدوي يعني أن الضيف لا يُرد أبداً حتى لو كان غريباً.",
+      "🏊 لا يمكنك الغرق في البحر الميت — الملح يجعلك تطفو تلقائياً!",
+      "🌡️ تتمتع العقبة بأكثر من 300 يوم مشمس في السنة.",
+      "🗿 جرش من أفضل المدن الرومانية المحفوظة خارج روما نفسها.",
+      "🍞 المنسف الطبق الوطني الأردني يُقدَّم على طبق مشترك ويُؤكل باليد اليمنى.",
+      "🌺 في الربيع تزهر أكثر من 1700 نوع من الزهور البرية في جبال الأردن.",
+      "⚡ الأردن رائد في الطاقة الشمسية وطاقة الرياح في المنطقة."
+    ]
+  },
+  fr: {
+    disappointing:"Décevant...",brokeMsg:"Peut-être la prochaine fois.",close:"Fermer",
+    tellStory:"🌍 Racontez votre histoire",discoverGems:"Comment avez-vous découvert ces joyaux?",
+    optSchool:"Projet scolaire",optFriend:"Ami",optSocial:"Médias sociaux",optSearch:"Moteur de recherche",optOther:"Autre",
+    exploreBtn:"Explorer la Jordanie",
+    heroTag:"Jordanie · Joyaux Cachés",heroTitle:"Découvrez les Joyaux Cachés de Jordanie",
+    heroSub:"Des cités taillées dans le roc aux cieux étoilés du désert.",
+    exploringAs:"Exploration en tant que",
+    navGems:"Joyaux Cachés",navAbout:"À propos",navAboutMe:"À mon sujet",
+    gemsLabel:"Douze Endroits à Découvrir",gemsTitle:"Les Joyaux Cachés",
+    gameLabel:"Jouer & Concourir",gameTitle:"Chasseur de Gemmes",gameSubTitle:"Collectez les Gemmes!",
+    gameDesc:"Cliquez vite — évitez les étoiles cassées.",
+    timerLabel:"Temps:",score:"Score:",startBtn:"▶ Commencer",
+    gameWarning:"Les Étoiles Cassées 💥 coûtent 3 points! Les Trophées 🏆 valent 5!",
+    leaderboard:"🏆 Classement",noGamesYet:"Aucune partie jouée.",
+    bestMonth:"⭐ Meilleur du Mois",noRecord:"Aucun record",
+    achieveTitle:"Pro du Jeu",proLocked:"Marquez 20+ pour débloquer",
+    reviewLabel:"Partagez vos Pensées",rateUs:"Évaluer",
+    reviewPlaceholder:"Votre avis sur la Jordanie...",submit:"Envoyer",
+    shareProj:"📱 Partager ce Projet",scanView:"Scannez le QR pour ouvrir le site.",
+    chooseSeason:"🗓️ Choisissez la Saison",chooseSeasonDesc:"Quand visitez-vous la Jordanie?",
+    bookBtn:"Réserver mon Vol ✈️",
+    aboutLabel:"À propos du Royaume",aboutTitle:"Découvrez les Merveilles!",
+    aboutDesc:"Des cités antiques aux déserts, la Jordanie regorge de joyaux cachés.",
+    backGems:"← Retour aux Joyaux",shuffleFacts:"🔀 Mélanger",rainBtn:"🐪 Pluie Jordanienne!",
+    newProverb:"Nouveau Proverbe ✨",
+    funFact:"⭐ Fait intéressant:",
+    qSafe:"La Jordanie est-elle sûre?",aSafe1:"Très sûre pour les touristes.",aSafe2:"Les locaux sont accueillants.",
+    qExp:"Est-ce cher?",aExp1:"La nourriture locale est bon marché.",aExp2:"Le transport local est économique.",
+    qFood:"La cuisine est-elle bonne?",aFood1:"Légendaire! Essayez le Mansaf.",aFood2:"La Kunafa est incontournable!",
+    qLang:"Parle-t-on anglais?",aLang1:"Oui, largement compris.",aLang2:"Les locaux communiquent en anglais.",
+    qHist:"Pleine d'histoire?",aHist1:"Un musée à ciel ouvert.",aHist2:"Jerash et Amman sont magnifiques.",
+    qRelig:"Diversité culturelle?",aRelig1:"Modèle de coexistence religieuse.",aRelig2:"L'hospitalité est centrale.",
+    qNature:"Seulement du désert?",aNature1:"Non, aussi des forêts et récifs.",aNature2:"Diversité du Nord au Sud.",
+    bestTime:"Meilleure période:",weather:"Météo:",calcBtn:"Calculer",bookBtnCard:"Réserver",passengers:"Passagers:",pricePer:"Prix/personne (USD):",mapBtn:"🗺️ Carte",
+    petraDesc:"Cité archéologique célèbre pour son architecture taillée dans le roc.",
+    wadiRumDesc:"Vallée surréelle de grès et granite.",danaDesc:"La plus grande réserve naturelle.",
+    ajlounDesc:"Paysage méditerranéen luxuriant.",qasrDesc:"Architecture islamique précoce.",
+    pellaDesc:"Ruines antiques panoramiques.",mujibDesc:"Canyon spectaculaire vers la mer Morte.",
+    ummDesc:"Ville de basalte noir.",umAlNamlDesc:"Paysage verdoyant au printemps.",
+    deadsea:"Flottez sur la mer la plus salée.",jerash:"Ville romaine bien conservée.",aqaba:"Plongée en mer Rouge.",
+    bestTimePetra:"Printemps & Automne",weatherPetra:"Chaud le jour",
+    bestTimeWadiRum:"Toute l'année",weatherWadiRum:"Idéal pour l'aventure",
+    bestTimeDana:"Printemps & Automne",weatherDana:"Doux et agréable",
+    bestTimeAjloun:"Printemps",weatherAjloun:"Frais et vert",
+    bestTimeQasr:"Automne",weatherQasr:"Désert sec",
+    bestTimePella:"Hiver / Printemps",weatherPella:"Collines vertes",
+    bestTimeMujib:"Été",weatherMujib:"Canyon humide",
+    bestTimeUmm:"Hiver",weatherUmm:"Basalte noir",
+    bestTimeUmAlNaml:"Printemps",weatherUmAlNaml:"Vert et luxuriant",
+    bestTimeDeadSea:"Toute l'année",weatherDeadSea:"Chaud et ensoleillé",
+    bestTimeJerash:"Printemps & Automne",weatherJerash:"Agréable",
+    bestTimeAqaba:"Toute l'année",weatherAqaba:"Chaud, idéal pour plonger",
+    amRole:"Étudiant · Développeur Web · Passionné de Jordanie 🇯🇴",
+    amBio:"Salut! Je suis Essam, étudiant à Doha au Qatar en 10ème année, passionné par la riche histoire et culture de la Jordanie. J'ai créé ce projet pour partager la beauté cachée de mon pays avec le monde.",
+    amSkillsLabel:"Ce que je sais",amSkillsTitle:"Compétences et Intérêts",
+    amSkill1Title:"Développement Web",amSkill1Desc:"Création de sites web interactifs avec HTML, CSS et JavaScript.",
+    amSkill2Title:"Design UI",amSkill2Desc:"Création d'interfaces modernes, belles et faciles à utiliser.",
+    amSkill3Title:"Histoire Jordanienne",amSkill3Desc:"Connaissance approfondie des sites archéologiques et du patrimoine jordanien.",
+    amSkill4Title:"Photographie",amSkill4Desc:"Capture des paysages époustouflants et des monuments anciens de Jordanie.",
+    amSkill5Title:"Multilingue",amSkill5Desc:"Communication en arabe et en anglais pour rendre ce projet accessible à tous.",
+    amSkill6Title:"Voyage & Exploration",amSkill6Desc:"Visite et documentation personnelle de nombreux sites jordaniens méconnus.",
+    amQuote:'"La Jordanie n\'est pas juste un endroit — c\'est un sentiment. Une fois qu\'elle touche votre cœur, vous ne la quittez jamais vraiment."',
+    amContactTitle:"Envie de collaborer?",amContactDesc:"Je suis ouvert aux projets scolaires, aux collaborations créatives et à toutes les aventures liées à la Jordanie!",amContactBtn:"📬 Contactez-moi",
+    introTitle:"Joyaux Cachés en Jordanie",introSub:"Là où l'histoire vit",introWelcome:"Bienvenue, Voyageur",introDesc:"Entrez votre nom pour commencer votre voyage",introBtn:"✨ Commencer mon Voyage",introPlaceholder:"Votre nom...",
+    facts:[
+      "🌊 La mer Morte se trouve à 430 mètres sous le niveau de la mer — le point le plus bas de la surface terrestre!",
+      "🏛️ Petra a été perdue pour l'Occident pendant près de 300 ans avant sa redécouverte en 1812.",
+      "🚀 La NASA utilise Wadi Rum pour simuler des missions sur Mars tant le paysage est extraterrestre!",
+      "🌿 La Jordanie possède plus de 2 000 espèces de plantes sauvages, plus que toutes les îles britanniques.",
+      "💧 La mer Morte est 10 fois plus salée que l'eau de mer ordinaire — rien n'y vit.",
+      "🏆 Petra est l'une des nouvelles Sept Merveilles du Monde, élue par 100 millions de personnes.",
+      "🦅 La Jordanie se trouve sur l'un des grands couloirs de migration des oiseaux dans le monde.",
+      "🎬 Wadi Rum a servi de décor à Seul sur Mars, Lawrence d'Arabie et Rogue One.",
+      "⛏️ Les Nabatéens bâtisseurs de Petra étaient maîtres en hydraulique — leur réseau d'eau alimentait 30 000 personnes.",
+      "🌙 Les couleurs du drapeau jordanien représentent la Révolte arabe, la foi islamique et un avenir lumineux.",
+      "🐪 La tradition bédouine de l'hospitalité (Diyafa) signifie qu'un hôte ne peut jamais être refusé.",
+      "🏊 On ne peut littéralement pas couler dans la mer Morte — le sel vous fait flotter automatiquement!",
+      "🌡️ Aqaba bénéficie de plus de 300 jours ensoleillés par an.",
+      "🗿 Jerash est l'une des villes romaines les mieux conservées en dehors de Rome.",
+      "🍞 Le Mansaf, plat national jordanien, est servi sur un grand plat commun.",
+      "🌺 Au printemps, les collines jordaniennes s'épanouissent avec plus de 1 700 espèces de fleurs sauvages.",
+      "⚡ La Jordanie est pionnière en énergie solaire et éolienne dans la région."
+    ]
+  },
+  es: {
+    disappointing:"Decepcionante...",brokeMsg:"Tal vez la próxima vez.",close:"Cerrar",
+    tellStory:"🌍 Cuéntanos tu historia",discoverGems:"¿Cómo descubriste estas joyas?",
+    optSchool:"Proyecto escolar",optFriend:"Amigo",optSocial:"Redes sociales",optSearch:"Buscador",optOther:"Otro",
+    exploreBtn:"Explorar Jordania",
+    heroTag:"Jordania · Joyas Ocultas",heroTitle:"Descubre las Joyas Ocultas de Jordania",
+    heroSub:"Desde ciudades talladas en roca hasta cielos desérticos llenos de estrellas.",
+    exploringAs:"Explorando como",
+    navGems:"Joyas Ocultas",navAbout:"Sobre Jordania",navAboutMe:"Sobre Mí",
+    gemsLabel:"Doce Lugares que Vale la Pena Encontrar",gemsTitle:"Las Joyas Ocultas",
+    gameLabel:"Juega y Compite",gameTitle:"Cazador de Gemas",gameSubTitle:"¡Colecciona Gemas!",
+    gameDesc:"Haz clic rápido — evita las estrellas rotas.",
+    timerLabel:"Tiempo:",score:"Puntuación:",startBtn:"▶ Empezar",
+    gameWarning:"¡Las Estrellas Rotas 💥 cuestan 3 puntos! ¡Los Trofeos 🏆 valen 5!",
+    leaderboard:"🏆 Clasificación",noGamesYet:"Aún no hay partidas.",
+    bestMonth:"⭐ Mejor del Mes",noRecord:"Sin récord",
+    achieveTitle:"Pro del Juego",proLocked:"Puntúa 20+ para desbloquear",
+    reviewLabel:"Comparte tus Opiniones",rateUs:"Calificar",
+    reviewPlaceholder:"Tu opinión sobre Jordania...",submit:"Enviar",
+    shareProj:"📱 Compartir Proyecto",scanView:"Escanea el QR para abrir el sitio.",
+    chooseSeason:"🗓️ Elige tu Temporada",chooseSeasonDesc:"¿Cuándo planeas visitar Jordania?",
+    bookBtn:"Reservar mi Vuelo ✈️",
+    aboutLabel:"Sobre el Reino",aboutTitle:"¡Descubre las Maravillas!",
+    aboutDesc:"Desde ciudades antiguas hasta desiertos, Jordania está llena de joyas ocultas.",
+    backGems:"← Volver a las Joyas",shuffleFacts:"🔀 Mezclar",rainBtn:"🐪 ¡Lluvia Jordana!",
+    newProverb:"Nuevo Proverbio ✨",
+    funFact:"⭐ Dato curioso:",
+    qSafe:"¿Es seguro?",aSafe1:"Muy seguro para turistas.",aSafe2:"La gente es amable.",
+    qExp:"¿Es caro?",aExp1:"Comida local barata.",aExp2:"Transporte económico.",
+    qFood:"¿Buena comida?",aFood1:"¡Legendaria! Prueba el Mansaf.",aFood2:"¡La Kunafa es imperdible!",
+    qLang:"¿Se habla inglés?",aLang1:"Sí, ampliamente comprendido.",aLang2:"La gente habla inglés.",
+    qHist:"¿Llena de historia?",aHist1:"Museo al aire libre.",aHist2:"Jerash es increíble.",
+    qRelig:"¿Diversidad cultural?",aRelig1:"Modelo de coexistencia.",aRelig2:"Hospitalidad central.",
+    qNature:"¿Solo desierto?",aNature1:"No, también bosques y arrecifes.",aNature2:"Gran variedad.",
+    bestTime:"Mejor época:",weather:"Clima:",calcBtn:"Calcular",bookBtnCard:"Reservar",passengers:"Pasajeros:",pricePer:"Precio/persona (USD):",mapBtn:"🗺️ Mapa",
+    petraDesc:"Ciudad arqueológica famosa por su arquitectura tallada en roca.",
+    wadiRumDesc:"Valle surrealista de arenisca y granito.",danaDesc:"La más grande reserva natural.",
+    ajlounDesc:"Paisaje mediterráneo exuberante.",qasrDesc:"Arquitectura islámica temprana.",
+    pellaDesc:"Ruinas antiguas con vistas panorámicas.",mujibDesc:"Espectacular cañón hacia el mar Muerto.",
+    ummDesc:"Ciudad de basalto negro.",umAlNamlDesc:"Paisaje verde en primavera.",
+    deadsea:"Flota en el mar más salado del mundo.",jerash:"Ciudad romana bien conservada.",aqaba:"Buceo en el Mar Rojo.",
+    bestTimePetra:"Primavera y Otoño",weatherPetra:"Días cálidos",
+    bestTimeWadiRum:"Todo el año",weatherWadiRum:"Ideal para aventura",
+    bestTimeDana:"Primavera y Otoño",weatherDana:"Templado",
+    bestTimeAjloun:"Primavera",weatherAjloun:"Fresco y verde",
+    bestTimeQasr:"Otoño",weatherQasr:"Desierto seco",
+    bestTimePella:"Invierno / Primavera",weatherPella:"Colinas verdes",
+    bestTimeMujib:"Verano",weatherMujib:"Cañón de agua",
+    bestTimeUmm:"Invierno",weatherUmm:"Basalto negro",
+    bestTimeUmAlNaml:"Primavera",weatherUmAlNaml:"Verde y exuberante",
+    bestTimeDeadSea:"Todo el año",weatherDeadSea:"Cálido y soleado",
+    bestTimeJerash:"Primavera y Otoño",weatherJerash:"Agradable",
+    bestTimeAqaba:"Todo el año",weatherAqaba:"Cálido, ideal para bucear",
+    amRole:"Estudiante · Desarrollador Web · Entusiasta de Jordania 🇯🇴",
+    amBio:"¡Hola! Soy Essam, estudiante en Doha, Qatar, en grado 10, apasionado por la rica historia y cultura de Jordania. Construí este proyecto para compartir la belleza oculta de mi país con el mundo.",
+    amSkillsLabel:"Lo que sé",amSkillsTitle:"Habilidades e Intereses",
+    amSkill1Title:"Desarrollo Web",amSkill1Desc:"Creación de sitios web interactivos con HTML, CSS y JavaScript.",
+    amSkill2Title:"Diseño UI",amSkill2Desc:"Creación de interfaces modernas, bellas y fáciles de usar.",
+    amSkill3Title:"Historia Jordana",amSkill3Desc:"Conocimiento profundo de los sitios arqueológicos y el patrimonio jordano.",
+    amSkill4Title:"Fotografía",amSkill4Desc:"Capturando los paisajes impresionantes y monumentos antiguos de Jordania.",
+    amSkill5Title:"Multilingüe",amSkill5Desc:"Comunicándome en árabe e inglés para hacer este proyecto accesible a todos.",
+    amSkill6Title:"Viaje y Exploración",amSkill6Desc:"Visitando y documentando personalmente muchos sitios jordanos poco conocidos.",
+    amQuote:'"Jordania no es solo un lugar — es un sentimiento. Una vez que toca tu corazón, nunca te vas realmente."',
+    amContactTitle:"¿Quieres colaborar?",amContactDesc:"¡Estoy abierto a proyectos escolares, colaboraciones creativas y cualquier aventura relacionada con Jordania!",amContactBtn:"📬 Contáctame",
+    introTitle:"Joyas Ocultas en Jordania",introSub:"Donde vive la historia",introWelcome:"Bienvenido, Viajero",introDesc:"Ingresa tu nombre para comenzar tu viaje",introBtn:"✨ Iniciar mi Viaje",introPlaceholder:"Tu nombre...",
+    facts:[
+      "🌊 El mar Muerto está a 430 metros bajo el nivel del mar — ¡el punto más bajo de la superficie terrestre!",
+      "🏛️ Petra estuvo perdida para el mundo occidental durante casi 300 años antes de ser redescubierta en 1812.",
+      "🚀 ¡La NASA usa Wadi Rum para simular misiones a Marte porque el paisaje es tan extraterrestre!",
+      "🌿 Jordania tiene más de 2.000 especies de plantas silvestres, más que todas las islas británicas.",
+      "💧 El mar Muerto es 10 veces más salado que el agua del océano — ¡nada vive en él!",
+      "🏆 Petra es una de las nuevas Siete Maravillas del Mundo, votada por 100 millones de personas.",
+      "🦅 Jordania está en una de las principales rutas migratorias de aves del mundo.",
+      "🎬 Wadi Rum fue el escenario de El Marciano, Lawrence de Arabia y Rogue One.",
+      "⛏️ Los nabateos que construyeron Petra eran maestros hidráulicos — su sistema de agua servía a 30.000 personas.",
+      "🌙 Los colores de la bandera jordana representan la Revuelta Árabe, la fe islámica y el futuro brillante.",
+      "🐪 La tradición beduina de hospitalidad (Diyafa) significa que nunca se puede rechazar a un huésped.",
+      "🏊 ¡Literalmente no puedes hundirte en el mar Muerto — la sal te hace flotar automáticamente!",
+      "🌡️ Aqaba tiene más de 300 días soleados al año.",
+      "🗿 Jerash es una de las ciudades romanas mejor conservadas fuera de Roma.",
+      "🍞 El Mansaf, plato nacional jordano, se sirve en una fuente comunal.",
+      "🌺 En primavera, las colinas de Jordania florecen con más de 1.700 especies de flores silvestres.",
+      "⚡ Jordania es líder en energía solar y eólica en la región."
+    ]
+  },
+  hi: {
+    disappointing:"निराशाजनक...",brokeMsg:"शायद अगली बार।",close:"बंद करें",
+    tellStory:"🌍 अपनी कहानी बताएं",discoverGems:"आपने इन रत्नों की खोज कैसे की?",
+    optSchool:"स्कूल प्रोजेक्ट",optFriend:"मित्र",optSocial:"सोशल मीडिया",optSearch:"सर्च इंजन",optOther:"अन्य",
+    exploreBtn:"जॉर्डन का अन्वेषण करें",
+    heroTag:"जॉर्डन · छिपे हुए रत्न",heroTitle:"जॉर्डन के छिपे हुए रत्न खोजें",
+    heroSub:"पत्थर में तराशे शहरों से रेगिस्तान के तारों भरे आसमान तक।",
+    exploringAs:"अन्वेषण कर रहे हैं",
+    navGems:"छिपे रत्न",navAbout:"जॉर्डन के बारे में",navAboutMe:"मेरे बारे में",
+    gemsLabel:"बारह देखने योग्य स्थान",gemsTitle:"छिपे हुए रत्न",
+    gameLabel:"खेलें और प्रतिस्पर्धा करें",gameTitle:"रत्न शिकारी",gameSubTitle:"रत्न इकट्ठा करें!",
+    gameDesc:"जल्दी क्लिक करें — टूटे तारों से बचें।",
+    timerLabel:"समय:",score:"स्कोर:",startBtn:"▶ खेल शुरू करें",
+    gameWarning:"टूटे तारे 💥 से 3 अंक कटते हैं! ट्रॉफी 🏆 से 5 मिलते हैं!",
+    leaderboard:"🏆 लीडरबोर्ड",noGamesYet:"अभी तक कोई खेल नहीं।",
+    bestMonth:"⭐ इस महीने का सर्वश्रेष्ठ",noRecord:"कोई रिकॉर्ड नहीं",
+    achieveTitle:"मिनी गेम प्रो",proLocked:"20+ स्कोर करें",
+    reviewLabel:"अपने विचार साझा करें",rateUs:"रेट और समीक्षा",
+    reviewPlaceholder:"जॉर्डन के बारे में अपनी राय लिखें...",submit:"सबमिट करें",
+    shareProj:"📱 प्रोजेक्ट शेयर करें",scanView:"QR कोड स्कैन करें।",
+    chooseSeason:"🗓️ अपना मौसम चुनें",chooseSeasonDesc:"आप कब जॉर्डन जाने की योजना बना रहे हैं?",
+    bookBtn:"उड़ान बुक करें ✈️",
+    aboutLabel:"राज्य के बारे में",aboutTitle:"जॉर्डन के अजूबे खोजें!",
+    aboutDesc:"प्राचीन शहरों से रेगिस्तान तक, जॉर्डन छिपे रत्नों से भरा है।",
+    backGems:"← वापस जाएं",shuffleFacts:"🔀 तथ्य बदलें",rainBtn:"🐪 जॉर्डन की बारिश!",
+    newProverb:"नई कहावत ✨",
+    funFact:"⭐ मज़ेदार तथ्य:",
+    qSafe:"क्या जॉर्डन सुरक्षित है?",aSafe1:"हाँ, पर्यटकों के लिए बहुत सुरक्षित।",aSafe2:"स्थानीय लोग मददगार हैं।",
+    qExp:"क्या महंगा है?",aExp1:"स्थानीय खाना सस्ता है।",aExp2:"परिवहन किफायती है।",
+    qFood:"खाना अच्छा है?",aFood1:"अद्भुत! मनसफ जरूर खाएं।",aFood2:"कनाफे जरूर आजमाएं!",
+    qLang:"अंग्रेजी बोली जाती है?",aLang1:"हाँ, शहरों में व्यापक रूप से।",aLang2:"लोग खुशी से बोलते हैं।",
+    qHist:"क्या इतिहास से भरा है?",aHist1:"एक खुला संग्रहालय।",aHist2:"जरश अद्भुत है।",
+    qRelig:"सांस्कृतिक विविधता?",aRelig1:"धार्मिक सहिष्णुता का मॉडल।",aRelig2:"आतिथ्य मुख्य मूल्य।",
+    qNature:"केवल रेगिस्तान?",aNature1:"नहीं, जंगल और प्रवाल भित्तियाँ भी।",aNature2:"उत्तर से दक्षिण तक विविधता।",
+    bestTime:"सबसे अच्छा समय:",weather:"मौसम:",calcBtn:"गणना",bookBtnCard:"उड़ान बुक करें",passengers:"यात्री:",pricePer:"मूल्य/व्यक्ति:",mapBtn:"🗺️ नक्शा",
+    petraDesc:"दक्षिण जॉर्डन में एक पुरातात्विक आश्चर्य।",
+    wadiRumDesc:"रेत पत्थर और ग्रेनाइट की एक सपनोई घाटी।",
+    danaDesc:"जॉर्डन का सबसे बड़ा प्राकृतिक भंडार।",ajlounDesc:"बलूत और पिस्ता के जंगलों के साथ भूमध्यसागरीय परिदृश्य।",
+    qasrDesc:"प्रारंभिक इस्लामी वास्तुकला।",pellaDesc:"6000 साल पुराने खंडहर।",
+    mujibDesc:"मृत सागर तक जाने वाली नदी घाटी।",ummDesc:"काले बेसाल्ट से बना शहर।",
+    umAlNamlDesc:"वसंत में हरा-भरा परिदृश्य।",
+    deadsea:"दुनिया के सबसे नमकीन समुद्र में तैरें।",jerash:"रोमन शहर।",aqaba:"लाल सागर में गोताखोरी।",
+    bestTimePetra:"वसंत और शरद",weatherPetra:"गर्म दिन",
+    bestTimeWadiRum:"पूरे साल",weatherWadiRum:"साहसिक",
+    bestTimeDana:"वसंत और शरद",weatherDana:"हल्का",
+    bestTimeAjloun:"वसंत",weatherAjloun:"ठंडा",
+    bestTimeQasr:"शरद",weatherQasr:"शुष्क",
+    bestTimePella:"सर्दी / वसंत",weatherPella:"हरी पहाड़ियाँ",
+    bestTimeMujib:"गर्मी",weatherMujib:"गीला",
+    bestTimeUmm:"सर्दी",weatherUmm:"बेसाल्ट",
+    bestTimeUmAlNaml:"वसंत",weatherUmAlNaml:"हरा-भरा",
+    bestTimeDeadSea:"पूरे साल",weatherDeadSea:"गर्म और धूप",
+    bestTimeJerash:"वसंत और शरद",weatherJerash:"सुखद",
+    bestTimeAqaba:"पूरे साल",weatherAqaba:"गर्म",
+    amRole:"छात्र · वेब डेवलपर · जॉर्डन उत्साही 🇯🇴",
+    amBio:"नमस्ते! मैं एस्साम हूं, कतर दोहा में ग्रेड 10 का छात्र, जॉर्डन के इतिहास और संस्कृति से जुनूनी। मैंने यह प्रोजेक्ट दुनिया के साथ अपने देश की छिपी सुंदरता साझा करने के लिए बनाया।",
+    amSkillsLabel:"मुझे क्या आता है",amSkillsTitle:"कौशल और रुचियां",
+    amSkill1Title:"वेब डेवलपमेंट",amSkill1Desc:"HTML, CSS और JavaScript का उपयोग करके इंटरैक्टिव वेबसाइटें बनाना।",
+    amSkill2Title:"UI डिजाइन",amSkill2Desc:"साफ, आधुनिक इंटरफेस बनाना जो सुंदर और उपयोग में आसान हों।",
+    amSkill3Title:"जॉर्डन का इतिहास",amSkill3Desc:"जॉर्डन के पुरातात्विक स्थलों, संस्कृतियों और विरासत का गहरा ज्ञान।",
+    amSkill4Title:"फोटोग्राफी",amSkill4Desc:"जॉर्डन के शानदार परिदृश्य और प्राचीन स्मारकों को कैमरे में कैद करना।",
+    amSkill5Title:"बहुभाषी",amSkill5Desc:"अरबी और अंग्रेजी में संवाद, इस प्रोजेक्ट को विश्वव्यापी बनाना।",
+    amSkill6Title:"यात्रा और खोज",amSkill6Desc:"जॉर्डन के कम-प्रसिद्ध पर अद्भुत स्थलों का व्यक्तिगत दौरा और दस्तावेजीकरण।",
+    amQuote:'"जॉर्डन सिर्फ एक जगह नहीं है — यह एक एहसास है। एक बार जो दिल को छू ले, फिर आप कभी सच में नहीं जाते।"',
+    amContactTitle:"सहयोग करना चाहते हैं?",amContactDesc:"मैं स्कूल परियोजनाओं, रचनात्मक सहयोग और जॉर्डन से जुड़े किसी भी साहसिक कार्य के लिए तैयार हूं!",amContactBtn:"📬 संपर्क करें",
+    introTitle:"जॉर्डन में छिपे हुए रत्न",introSub:"जहाँ इतिहास जीवित है",introWelcome:"स्वागत है, यात्री",introDesc:"अपनी यात्रा शुरू करने के लिए अपना नाम दर्ज करें",introBtn:"✨ मेरी यात्रा शुरू करें",introPlaceholder:"आपका नाम...",
+    facts:[
+      "🌊 मृत सागर समुद्र तल से 430 मीटर नीचे है — पृथ्वी की सतह का सबसे निचला बिंदु!",
+      "🏛️ पेट्रा 1812 में पुनः खोजे जाने से पहले लगभग 300 वर्षों तक पश्चिमी दुनिया से छिपी रही।",
+      "🚀 नासा वादी रम का उपयोग मंगल मिशन के सिमुलेशन के लिए करती है क्योंकि परिदृश्य इतना अजीब है!",
+      "🌿 जॉर्डन में 2,000 से अधिक जंगली पौधों की प्रजातियां हैं, पूरे ब्रिटिश द्वीपों से अधिक।",
+      "💧 मृत सागर सामान्य महासागरीय जल से 10 गुना अधिक नमकीन है — इसमें कुछ भी नहीं जीता।",
+      "🏆 पेट्रा नई सात विश्व आश्चर्यों में से एक है, 100 मिलियन लोगों ने वोट किया।",
+      "🦅 जॉर्डन विश्व के प्रमुख पक्षी प्रवास मार्गों में से एक पर स्थित है।",
+      "🎬 वादी रम द मार्शियन, लॉरेंस ऑफ अरेबिया और रोग वन की फिल्मांकन स्थल रहा है।",
+      "⛏️ पेट्रा बनाने वाले नबातियन हाइड्रोलिक इंजीनियरिंग के उस्ताद थे — उनका जल प्रणाली 30,000 लोगों की सेवा करती थी।",
+      "🌙 जॉर्डन के झंडे के रंग अरब विद्रोह, इस्लामी विश्वास और उज्ज्वल भविष्य का प्रतिनिधित्व करते हैं।",
+      "🐪 बेदुइन आतिथ्य परंपरा का मतलब है कि एक अतिथि को कभी भी नहीं लौटाया जाना चाहिए।",
+      "🏊 मृत सागर में डूबना वस्तुतः असंभव है — नमक आपको अपने आप तैरा देता है!",
+      "🌡️ अकाबा में प्रति वर्ष 300 से अधिक धूप के दिन होते हैं।",
+      "🗿 जेरश रोम के बाहर सबसे अच्छी तरह से संरक्षित रोमन शहरों में से एक है।",
+      "🍞 मनसफ, जॉर्डन का राष्ट्रीय व्यंजन, एक साझा थाली में परोसा जाता है।",
+      "🌺 वसंत में जॉर्डन की पहाड़ियों में 1,700 से अधिक जंगली फूलों की प्रजातियां खिलती हैं।",
+      "⚡ जॉर्डन सौर और पवन ऊर्जा में क्षेत्र का अग्रणी देश है।"
+    ]
+  },
+  zh: {
+    disappointing:"令人失望...",brokeMsg:"也许下次吧。",close:"关闭",
+    tellStory:"🌍 讲述您的故事",discoverGems:"您是如何发现这些宝藏的？",
+    optSchool:"学校项目",optFriend:"朋友",optSocial:"社交媒体",optSearch:"搜索引擎",optOther:"其他",
+    exploreBtn:"探索约旦",
+    heroTag:"约旦 · 隐藏瑰宝",heroTitle:"发现约旦的隐藏瑰宝",
+    heroSub:"从岩石中雕刻的城市到繁星满天的沙漠夜空。",
+    exploringAs:"正在以此名探索",
+    navGems:"隐藏瑰宝",navAbout:"关于约旦",navAboutMe:"关于我",
+    gemsLabel:"十二个值得寻访的地方",gemsTitle:"隐藏的瑰宝",
+    gameLabel:"游戏与竞技",gameTitle:"宝石猎人",gameSubTitle:"收集宝石！",
+    gameDesc:"快速点击 — 避开破碎的星星。",
+    timerLabel:"时间：",score:"得分：",startBtn:"▶ 开始游戏",
+    gameWarning:"破星 💥 扣3分！奖杯 🏆 得5分！",
+    leaderboard:"🏆 排行榜",noGamesYet:"还没有游戏记录。",
+    bestMonth:"⭐ 本月最佳",noRecord:"暂无记录",
+    achieveTitle:"游戏高手",proLocked:"得分20+可解锁",
+    reviewLabel:"分享您的想法",rateUs:"评分与评论",
+    reviewPlaceholder:"写下您对约旦的看法...",submit:"提交",
+    shareProj:"📱 分享此项目",scanView:"扫描QR码打开网站。",
+    chooseSeason:"🗓️ 选择季节",chooseSeasonDesc:"您计划何时访问约旦？",
+    bookBtn:"预订我的航班 ✈️",
+    aboutLabel:"关于王国",aboutTitle:"发现约旦的神奇！",
+    aboutDesc:"从古城到沙漠，约旦充满了有待探索的隐藏瑰宝。",
+    backGems:"← 返回瑰宝",shuffleFacts:"🔀 打乱事实",rainBtn:"🐪 约旦之雨！",
+    newProverb:"新谚语 ✨",
+    funFact:"⭐ 有趣的事实：",
+    qSafe:"约旦安全吗？",aSafe1:"对游客非常安全。",aSafe2:"当地人热情好客。",
+    qExp:"约旦贵吗？",aExp1:"本地食物便宜。",aExp2:"本地交通实惠。",
+    qFood:"食物好吃吗？",aFood1:"传奇美味！试试Mansaf。",aFood2:"Kunafa是必吃甜点！",
+    qLang:"说英语吗？",aLang1:"是的，城市里广泛理解。",aLang2:"当地人乐意交流。",
+    qHist:"历史丰富吗？",aHist1:"露天博物馆。",aHist2:"杰拉什和安曼很壮观。",
+    qRelig:"文化多元？",aRelig1:"宗教共存的典范。",aRelig2:"热情好客是核心价值。",
+    qNature:"只有沙漠？",aNature1:"不，还有森林和珊瑚礁。",aNature2:"南北多样性令人惊叹。",
+    bestTime:"最佳时间：",weather:"天气：",calcBtn:"计算",bookBtnCard:"预订航班",passengers:"乘客：",pricePer:"人均价格：",mapBtn:"🗺️ 地图",
+    petraDesc:"约旦南部著名的考古城市。",wadiRumDesc:"砂岩和花岗岩构成的超现实山谷。",
+    danaDesc:"约旦最大的自然保护区。",ajlounDesc:"地中海风格的茂盛景观。",
+    qasrDesc:"早期伊斯兰建筑群。",pellaDesc:"6000年历史的古遗址。",
+    mujibDesc:"通向死海的壮观峡谷。",ummDesc:"全由黑色玄武岩建造的城市。",
+    umAlNamlDesc:"春季尤其翠绿的自然景观。",
+    deadsea:"在世界最咸的水域漂浮。",jerash:"保存完好的罗马城市。",aqaba:"红海潜水。",
+    bestTimePetra:"春秋季",weatherPetra:"白天温暖",
+    bestTimeWadiRum:"全年",weatherWadiRum:"适合冒险",
+    bestTimeDana:"春秋季",weatherDana:"温和舒适",
+    bestTimeAjloun:"春季",weatherAjloun:"凉爽宜人",
+    bestTimeQasr:"秋季",weatherQasr:"干旱沙漠",
+    bestTimePella:"冬春季",weatherPella:"绿意盎然",
+    bestTimeMujib:"夏季",weatherMujib:"潮湿峡谷",
+    bestTimeUmm:"冬季",weatherUmm:"黑色玄武岩",
+    bestTimeUmAlNaml:"春季",weatherUmAlNaml:"郁郁葱葱",
+    bestTimeDeadSea:"全年",weatherDeadSea:"温暖晴朗",
+    bestTimeJerash:"春秋季",weatherJerash:"宜人",
+    bestTimeAqaba:"全年",weatherAqaba:"温暖适合潜水",
+    amRole:"学生 · 网页开发者 · 约旦爱好者 🇯🇴",
+    amBio:"你好！我是Essam，在卡塔尔多哈读10年级的学生，对约旦丰富的历史和文化充满热情。我建立这个项目是为了与世界分享我国隐藏的美丽。",
+    amSkillsLabel:"我的知识",amSkillsTitle:"技能与兴趣",
+    amSkill1Title:"网页开发",amSkill1Desc:"使用HTML、CSS和JavaScript构建交互式网站。",
+    amSkill2Title:"UI设计",amSkill2Desc:"创建既美观又易用的现代界面。",
+    amSkill3Title:"约旦历史",amSkill3Desc:"对约旦考古遗址、文化和跨越数千年的遗产有深入了解。",
+    amSkill4Title:"摄影",amSkill4Desc:"记录使约旦独一无二的壮观风景和古代遗迹。",
+    amSkill5Title:"多语言",amSkill5Desc:"用阿拉伯语和英语交流，使这个项目对全世界访客开放。",
+    amSkill6Title:"旅行与探索",amSkill6Desc:"亲自访问并记录约旦许多鲜为人知但令人叹为观止的遗址。",
+    amQuote:'"约旦不仅仅是一个地方——它是一种感觉。一旦它触动你的心，你就永远不会真正离开。"',
+    amContactTitle:"想要合作吗？",amContactDesc:"我对学校项目、创意合作和任何与约旦相关的冒险都持开放态度！",amContactBtn:"📬 联系我",
+    introTitle:"约旦的隐藏瑰宝",introSub:"历史在这里生活",introWelcome:"欢迎，旅行者",introDesc:"输入您的名字开始旅程",introBtn:"✨ 开始我的旅程",introPlaceholder:"您的名字...",
+    facts:[
+      "🌊 死海海拔低于海平面430米——地球表面最低点！",
+      "🏛️ 佩特拉在1812年被重新发现之前，在西方世界消失了近300年。",
+      "🚀 美国宇航局用瓦迪拉姆模拟火星任务，因为那里的景观太像外星了！",
+      "🌿 约旦有超过2000种野生植物，比整个不列颠群岛还多。",
+      "💧 死海的盐分是普通海水的10倍——其中什么都不能存活。",
+      "🏆 佩特拉是新世界七大奇迹之一，由1亿人投票选出。",
+      "🦅 约旦位于世界主要候鸟迁徙路线上，每年有数百种鸟类经过。",
+      "🎬 瓦迪拉姆是《火星救援》、《阿拉伯的劳伦斯》和《侠盗一号》的拍摄地。",
+      "⛏️ 建造佩特拉的纳巴泰人是水利工程大师——他们的水利系统为3万人服务。",
+      "🌙 约旦国旗的颜色代表阿拉伯起义、伊斯兰信仰和光明的未来。",
+      "🐪 贝都因人的待客传统意味着客人永远不能被拒绝，即使是陌生人。",
+      "🏊 在死海里根本不可能下沉——盐分会让你自动漂浮！",
+      "🌡️ 亚喀巴每年有300多个晴天。",
+      "🗿 杰拉什是罗马境外保存最好的罗马城市之一。",
+      "🍞 约旦国菜曼萨夫放在公共盘子里，用右手食用。",
+      "🌺 春天，约旦山丘上盛开着1700多种野花。",
+      "⚡ 约旦在太阳能和风能方面是该地区的领先者。"
+    ]
+  }
+};
+
+const hiddenGems = [
+  {name:"Petra",btKey:"bestTimePetra",wKey:"weatherPetra",image:"https://images.pexels.com/photos/23124610/pexels-photo-23124610.jpeg?auto=compress&cs=tinysrgb&w=800",price:480,descKey:"petraDesc",mapUrl:"https://maps.google.com/?q=Petra+Jordan"},
+  {name:"Wadi Rum",btKey:"bestTimeWadiRum",wKey:"weatherWadiRum",image:"https://images.pexels.com/photos/13458330/pexels-photo-13458330.jpeg?auto=compress&cs=tinysrgb&w=800",price:350,descKey:"wadiRumDesc",mapUrl:"https://maps.google.com/?q=Wadi+Rum+Jordan"},
+  {name:"Dana Biosphere Reserve",btKey:"bestTimeDana",wKey:"weatherDana",image:"https://images.pexels.com/photos/14017359/pexels-photo-14017359.jpeg?auto=compress&cs=tinysrgb&w=800",price:200,descKey:"danaDesc",mapUrl:"https://maps.google.com/?q=Dana+Biosphere+Reserve+Jordan"},
+  {name:"Ajloun Forest Reserve",btKey:"bestTimeAjloun",wKey:"weatherAjloun",image:"https://images.pexels.com/photos/28086999/pexels-photo-28086999.jpeg?auto=compress&cs=tinysrgb&w=800",price:150,descKey:"ajlounDesc",mapUrl:"https://maps.google.com/?q=Ajloun+Jordan"},
+  {name:"Qasr Al-Hallabat",btKey:"bestTimeQasr",wKey:"weatherQasr",image:"https://images.pexels.com/photos/10360676/pexels-photo-10360676.jpeg?auto=compress&cs=tinysrgb&w=800",price:85,descKey:"qasrDesc",mapUrl:"https://maps.google.com/?q=Qasr+Al-Hallabat+Jordan"},
+  {name:"Pella (Tabaqat Fahl)",btKey:"bestTimePella",wKey:"weatherPella",image:"https://images.pexels.com/photos/4388164/pexels-photo-4388164.jpeg?auto=compress&cs=tinysrgb&w=800",price:95,descKey:"pellaDesc",mapUrl:"https://maps.google.com/?q=Pella+Tabaqat+Fahl+Jordan"},
+  {name:"Wadi Mujib Siq",btKey:"bestTimeMujib",wKey:"weatherMujib",image:"https://images.pexels.com/photos/16383630/pexels-photo-16383630.jpeg?auto=compress&cs=tinysrgb&w=800",price:110,descKey:"mujibDesc",mapUrl:"https://maps.google.com/?q=Wadi+Mujib+Jordan"},
+  {name:"Umm el-Jimal",btKey:"bestTimeUmm",wKey:"weatherUmm",image:"https://images.pexels.com/photos/10360675/pexels-photo-10360675.jpeg?auto=compress&cs=tinysrgb&w=800",price:75,descKey:"ummDesc",mapUrl:"https://maps.google.com/?q=Umm+el-Jimal+Jordan"},
+  {name:"Um Al Naml",btKey:"bestTimeUmAlNaml",wKey:"weatherUmAlNaml",image:"https://images.pexels.com/photos/20834371/pexels-photo-20834371.jpeg?auto=compress&cs=tinysrgb&w=800",price:60,descKey:"umAlNamlDesc",mapUrl:"https://maps.google.com/?q=Um+Al+Naml+Jordan"},
+  {name:"The Dead Sea",btKey:"bestTimeDeadSea",wKey:"weatherDeadSea",image:"https://images.pexels.com/photos/3601421/pexels-photo-3601421.jpeg?auto=compress&cs=tinysrgb&w=800",price:120,descKey:"deadsea",mapUrl:"https://maps.google.com/?q=Dead+Sea+Jordan"},
+  {name:"Jerash (Gerasa)",btKey:"bestTimeJerash",wKey:"weatherJerash",image:"https://images.pexels.com/photos/4388163/pexels-photo-4388163.jpeg?auto=compress&cs=tinysrgb&w=800",price:130,descKey:"jerash",mapUrl:"https://maps.google.com/?q=Jerash+Jordan"},
+  {name:"Aqaba",btKey:"bestTimeAqaba",wKey:"weatherAqaba",image:"https://images.pexels.com/photos/1192671/pexels-photo-1192671.jpeg?auto=compress&cs=tinysrgb&w=800",price:280,descKey:"aqaba",mapUrl:"https://maps.google.com/?q=Aqaba+Jordan"}
+];
+
+/* ===== STATE ===== */
+const API_BASE = "https://eca319e6-13e6-4092-9844-6912ccefc3bf-00-384bwl0nsvyjr.spock.replit.dev";
+let currentLang = 'en';
+let gameScore = 0;
+let gameInterval = null;
+let countdownInterval = null;
+const leaderboardArr = [];
+let bestMonthScore = parseInt(localStorage.getItem("bestMonthScore") || "0", 10);
+let bestMonthUser = localStorage.getItem("bestMonthUser") || "";
+let selectedMonth = null;
+let isDark = false;
+
+/* ===== LANGUAGE ===== */
+function t(key) { return (translations[currentLang] && translations[currentLang][key]) || (translations.en[key]) || key; }
+
+function applyTranslations() {
+  document.querySelectorAll("[data-key]").forEach(el => {
+    const key = el.getAttribute("data-key");
+    const val = t(key);
+    if (val) el.textContent = val;
+  });
+}
+
+function selectSource(el) {
+  document.querySelectorAll(".src-option").forEach(o => o.classList.remove("selected"));
+  el.classList.add("selected");
+}
+
+function introSetLang() {
+  const val = document.getElementById("introLangSelect").value;
+  currentLang = val;
+  const mainSel = document.getElementById("langSelect");
+  if (mainSel) mainSel.value = val;
+  applyTranslations();
+  const introScreen = document.getElementById("introScreen");
+  if (introScreen) introScreen.dir = val === "ar" ? "rtl" : "ltr";
+  const inp = document.getElementById("authUsername");
+  const t = translations[val] || translations.en;
+  if (inp && t.introPlaceholder) inp.placeholder = t.introPlaceholder;
+}
+
+function changeLanguage() {
+  currentLang = document.getElementById("langSelect").value;
+  const introSel = document.getElementById("introLangSelect");
+  if (introSel) introSel.value = currentLang;
+  applyTranslations();
+  renderPlaces();
+  updateBestMonthUI();
+  buildTicker();
+}
+
+/* ===== DARK MODE ===== */
+function toggleDarkMode() {
+  isDark = !isDark;
+  document.body.classList.toggle("dark", isDark);
+  document.getElementById("darkLabel").textContent = isDark ? "Dark" : "Light";
+}
+
+/* ===== LOGIN FLOW ===== */
+function simulateGoogleLogin() {
+  const name = document.getElementById("authUsername").value.trim();
+  if (!name) { alert("Please enter a name first!"); return; }
+  window._visitorName = name;
+  document.getElementById("activePlayer").textContent = name;
+  const intro = document.getElementById("introScreen");
+  intro.classList.add("fade-out");
+  setTimeout(() => {
+    intro.style.display = "none";
+    document.getElementById("sourceBox").classList.remove("hidden");
+  }, 800);
+}
+
+function finishLogin() {
+  document.getElementById("sourceBox").classList.add("hidden");
+  document.getElementById("navbar").classList.remove("hidden");
+  document.getElementById("funFactsTicker").classList.remove("hidden");
+  document.getElementById("hiddenGemsPage").classList.remove("hidden");
+  renderPlaces();
+  buildTicker();
+  applyTranslations();
+  startWaterfall();
+  generateQR();
+  loadComments();
+  fetchJordanWeather();
+  updateBestMonthUI();
+  recordVisit();
+  const mainSel = document.getElementById("langSelect");
+  if (mainSel) mainSel.value = currentLang;
+}
+
+/* ===== FUN FACTS TICKER ===== */
+function buildTicker() {
+  const inner = document.getElementById("tickerInner");
+  const langFacts = (translations[currentLang] && translations[currentLang].facts) ? translations[currentLang].facts : translations.en.facts;
+  const prefix = t('funFact');
+  const doubled = [...langFacts, ...langFacts];
+  inner.innerHTML = doubled.map(f => `<span class="fun-fact-item"><span>${prefix}</span> ${f}</span>`).join('');
+}
+
+/* ===== WEATHER ===== */
+async function fetchJordanWeather() {
+  try {
+    const res = await fetch("https://api.open-meteo.com/v1/forecast?latitude=31.95&longitude=35.91&current_weather=true");
+    const data = await res.json();
+    document.getElementById("temp").textContent = data.current_weather.temperature + "°C";
+    document.getElementById("weatherDesc").textContent = "Amman";
+  } catch {
+    document.getElementById("temp").textContent = "22°C";
+    document.getElementById("weatherDesc").textContent = "Amman";
+  }
+}
+
+/* ===== RENDER PLACES ===== */
+function renderPlaces() {
+  const placesDiv = document.getElementById("places");
+  placesDiv.innerHTML = "";
+  hiddenGems.forEach((place) => {
+    const div = document.createElement("div");
+    div.className = "gem-card";
+    div.innerHTML = `
+      <div class="gem-card-img-wrap">
+        <img class="gem-card-img" src="${place.image}" alt="${place.name}" loading="lazy">
+        <button class="gem-badge-btn" onclick="collectBadge(this)" aria-label="Save gem">★</button>
+      </div>
+      <div class="gem-card-body">
+        <div class="gem-card-name">${place.name}</div>
+        <p class="gem-card-desc">${t(place.descKey)}</p>
+        <div class="gem-meta">
+          <span class="gem-tag">🗓 ${t(place.btKey)}</span>
+          <span class="gem-tag">🌤 ${t(place.wKey)}</span>
+        </div>
+        <div class="gem-calc">
+          <input type="number" value="1" min="1" class="num" placeholder="${t('passengers')}">
+          <input type="number" value="${place.price}" class="price" placeholder="${t('pricePer')}">
+          <button class="gem-calc-btn" onclick="calcCost(this)">${t('calcBtn')}</button>
+        </div>
+        <div class="gem-result"></div>
+        <div class="gem-btn-row">
+          <button class="gem-book-btn" onclick="openBookingModal()">${t('bookBtnCard')}</button>
+          <a href="${place.mapUrl}" target="_blank" class="gem-map-btn">${t('mapBtn')}</a>
+        </div>
+      </div>
+    `;
+    placesDiv.appendChild(div);
+  });
+}
+
+function calcCost(btn) {
+  const box = btn.closest(".gem-card-body");
+  const n = parseFloat(box.querySelector(".num").value) || 1;
+  const p = parseFloat(box.querySelector(".price").value) || 0;
+  box.querySelector(".gem-result").textContent = `Total: ${(n * p).toLocaleString()} USD`;
+}
+
+function collectBadge(btn) { btn.classList.toggle("collected"); }
+
+/* ===== BOOKING MODAL ===== */
+function openBookingModal() {
+  selectedMonth = null;
+  document.querySelectorAll(".modal-month-btn").forEach(b => b.classList.remove("selected"));
+  document.getElementById("bookingModal").classList.remove("hidden");
+}
+function closeBookingModal() { document.getElementById("bookingModal").classList.add("hidden"); }
+function selectMonth(btn) {
+  document.querySelectorAll(".modal-month-btn").forEach(b => b.classList.remove("selected"));
+  btn.classList.add("selected");
+  selectedMonth = btn.textContent;
+}
+function confirmBooking() {
+  if (!selectedMonth) { alert("Please select a season first!"); return; }
+  const broke = confirm("Quick check — are you on a tight budget? (Cancel = No)");
+  closeBookingModal();
+  if (broke) {
+    document.getElementById("brokeModal").classList.remove("hidden");
+  } else {
+    window.open("https://www.qatarairways.com/en/homepage.html?destination=AMM", "_blank");
+  }
+}
+
+/* ===== GAME ===== */
+function startGame() {
+  const username = document.getElementById("activePlayer").textContent;
+  if (gameInterval) clearInterval(gameInterval);
+  if (countdownInterval) clearInterval(countdownInterval);
+  gameScore = 0;
+  document.getElementById("gameScore").textContent = 0;
+  document.getElementById("gameTimer").textContent = 10;
+  const game = document.getElementById("miniGame");
+  game.innerHTML = "";
+  let timeLeft = 10;
+
+  countdownInterval = setInterval(() => {
+    timeLeft--;
+    document.getElementById("gameTimer").textContent = timeLeft;
+    if (timeLeft <= 0) {
+      clearInterval(countdownInterval);
+      clearInterval(gameInterval);
+      game.innerHTML = "";
+      leaderboardArr.push({ name: username, score: gameScore });
+      updateLeaderboard();
+      setTimeout(() => alert(`Game Over! Final Score: ${gameScore}`), 50);
+      checkMonthlyRecord(username, gameScore);
+      if (gameScore >= 20) {
+        document.getElementById("miniGameProStatus").textContent = "Unlocked! 🎉";
+        document.getElementById("miniGameProBadge").classList.add("unlocked");
+      }
+    }
+  }, 1000);
+
+  gameInterval = setInterval(() => {
+    const chance = Math.random();
+    const gem = document.createElement("div");
+    gem.className = "gemIcon";
+    if (chance < 0.20) {
+      gem.textContent = "💥";
+      gem.onclick = () => { gameScore -= 3; document.getElementById("gameScore").textContent = gameScore; gem.remove(); };
+    } else if (chance > 0.95) {
+      gem.textContent = "🏆";
+      gem.onclick = () => { gameScore += 5; document.getElementById("gameScore").textContent = gameScore; gem.remove(); };
+    } else if (chance > 0.85) {
+      gem.textContent = "⭐";
+      gem.onclick = () => { gameScore += 3; document.getElementById("gameScore").textContent = gameScore; gem.remove(); };
+    } else {
+      gem.textContent = "💎";
+      gem.onclick = () => { gameScore += 1; document.getElementById("gameScore").textContent = gameScore; gem.remove(); };
+    }
+    gem.style.top = Math.random() * (game.clientHeight - 40) + "px";
+    gem.style.left = Math.random() * (game.clientWidth - 40) + "px";
+    game.appendChild(gem);
+    setTimeout(() => { if (gem.parentNode) gem.remove(); }, 1200);
+  }, 600);
+}
+
+function updateLeaderboard() {
+  const lbDiv = document.getElementById("leaderboard");
+  leaderboardArr.sort((a, b) => b.score - a.score);
+  lbDiv.innerHTML = leaderboardArr.slice(0, 5).map((e, i) => `
+    <div class="lb-entry">
+      <span class="lb-rank">${["🥇","🥈","🥉","4.","5."][i]}</span>
+      <span>${e.name}</span>
+      <span class="lb-score">${e.score} pts</span>
+    </div>
+  `).join("");
+}
+
+function updateBestMonthUI() {
+  const el = document.getElementById("bestMonthText");
+  if (bestMonthScore > 0) {
+    el.textContent = `${bestMonthUser} — ${bestMonthScore} pts`;
+    el.style.color = "var(--gold)";
+    el.style.fontWeight = "600";
+  } else {
+    el.textContent = t("noRecord");
+    el.style.color = "";
+  }
+}
+
+function checkMonthlyRecord(username, score) {
+  if (score > bestMonthScore) {
+    bestMonthScore = score;
+    bestMonthUser = username;
+    localStorage.setItem("bestMonthScore", String(score));
+    localStorage.setItem("bestMonthUser", username);
+    document.getElementById("hiddenGemsPage").classList.add("rainbow-record");
+    setTimeout(() => document.getElementById("hiddenGemsPage").classList.remove("rainbow-record"), 6000);
+    updateBestMonthUI();
+  }
+}
+
+/* ===== ADMIN PANEL ===== */
+function openAdminPanel() {
+  const modal = document.getElementById("adminModal");
+  modal.style.display = "flex";
+  document.getElementById("adminCode").focus();
+}
+function closeAdminPanel() {
+  document.getElementById("adminModal").style.display = "none";
+  document.getElementById("adminGate").style.display = "block";
+  document.getElementById("adminPanel").style.display = "none";
+  document.getElementById("adminCode").value = "";
+  document.getElementById("adminErr").textContent = "";
+}
+function checkAdminCode() {
+  if (document.getElementById("adminCode").value === "66621380") {
+    document.getElementById("adminGate").style.display = "none";
+    const panel = document.getElementById("adminPanel");
+    panel.style.display = "flex";
+    adminShowTab("comments");
+    loadAdminComments();
+    generateAdminQR();
+  } else {
+    const err = document.getElementById("adminErr");
+    err.textContent = "Incorrect code.";
+    document.getElementById("adminCode").value = "";
+    setTimeout(() => { err.textContent = ""; }, 2000);
+  }
+}
+function adminShowTab(tab) {
+  const isComments = tab === "comments";
+  document.getElementById("adminTabComments").style.display = isComments ? "block" : "none";
+  document.getElementById("adminTabShare").style.display = isComments ? "none" : "block";
+  document.getElementById("tabComments").style.background = isComments ? "rgba(120,100,60,0.2)" : "none";
+  document.getElementById("tabComments").style.color = isComments ? "rgba(200,180,130,0.75)" : "rgba(160,140,100,0.35)";
+  document.getElementById("tabShare").style.background = !isComments ? "rgba(120,100,60,0.2)" : "none";
+  document.getElementById("tabShare").style.color = !isComments ? "rgba(200,180,130,0.75)" : "rgba(160,140,100,0.35)";
+}
+function generateAdminQR() {
+  const el = document.getElementById("adminQrCode");
+  if (!el || el.dataset.generated) return;
+  el.dataset.generated = "1";
+  const url = window.location.href.split("?")[0];
+  document.getElementById("adminShareUrl").textContent = url;
+  new QRCode(el, { text: url, width: 120, height: 120, colorLight: "#ffffff", colorDark: "#0f0c08" });
+}
+function loadAdminComments() {
+  fetch(API_BASE + "/api/comments")
+    .then(r => r.json())
+    .then(comments => {
+      const list = document.getElementById("adminList");
+      if (!comments.length) {
+        list.innerHTML = '<p style="text-align:center;color:rgba(160,140,100,0.3);padding:2rem;font-size:0.85rem;">No comments yet.</p>';
+        return;
+      }
+      list.innerHTML = comments.map(c => `
+        <div id="arow-${c.id}" style="
+          display:flex; align-items:flex-start; gap:0.8rem; padding:0.8rem 1.4rem;
+          border-bottom:1px solid rgba(120,100,60,0.1);
+          ${c.pinned ? "background:rgba(200,134,10,0.04);" : ""}
+        ">
+          <div style="flex:1; min-width:0;">
+            <span style="color:rgba(160,140,100,0.5); font-size:0.75rem;">${c.pinned ? "📌 " : ""}${escName(c.name || "Anonymous")}</span>
+            <span style="color:rgba(120,100,60,0.35); font-size:0.7rem; margin-left:8px;">${new Date(c.createdAt).toLocaleDateString()}</span>
+            ${c.likes > 0 ? `<span style="color:rgba(200,134,10,0.55); font-size:0.7rem; margin-left:8px;">❤️ ${c.likes}</span>` : ""}
+            <p style="color:rgba(200,185,150,0.65); font-size:0.85rem; margin-top:3px; word-break:break-word;">${escName(c.body)}</p>
+          </div>
+          <div style="display:flex; flex-direction:column; gap:4px; flex-shrink:0;">
+            <button onclick="adminPin(${c.id})" style="
+              background:rgba(200,134,10,0.1); border:1px solid rgba(200,134,10,0.2);
+              color:rgba(200,134,10,0.65); border-radius:6px; padding:4px 10px;
+              font-size:0.72rem; cursor:pointer; white-space:nowrap;
+            ">${c.pinned ? "unpin" : "pin"}</button>
+            <button onclick="adminDel(${c.id})" style="
+              background:rgba(160,50,30,0.15); border:1px solid rgba(160,50,30,0.2);
+              color:rgba(180,80,50,0.6); border-radius:6px; padding:4px 10px;
+              font-size:0.72rem; cursor:pointer; white-space:nowrap;
+            ">delete</button>
+          </div>
+        </div>`).join("");
+    });
+}
+function adminDel(id) {
+  fetch(API_BASE + "/api/comments/" + id, { method: "DELETE" })
+    .then(r => { if (r.ok) { const el = document.getElementById("arow-"+id); if(el) el.remove(); } });
+}
+async function adminPin(id) {
+  await fetch(API_BASE + "/api/comments/" + id + "/pin", { method: "PATCH" });
+  loadAdminComments();
+  loadComments();
+}
+function escName(s) {
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+}
+
+/* ===== REVIEW ===== */
+function buildCommentBrickHtml(c) {
+  const likedSet = JSON.parse(localStorage.getItem("likedComments") || "[]");
+  const alreadyLiked = likedSet.includes(c.id);
+  return `
+    <div class="commentBrick${c.pinned ? " pinned-comment" : ""}" id="brick-${c.id}">
+      <div class="comment-top">
+        ${c.pinned ? '<span class="comment-pin-badge">📌 Featured</span>' : ""}
+        <strong style="color:var(--jordan-red)">${escName(c.name || "Anonymous")}</strong>
+      </div>
+      <div class="comment-body">${escName(c.body)}</div>
+      <div class="comment-reactions">
+        <button class="react-btn${alreadyLiked ? " reacted" : ""}" onclick="likeComment(${c.id}, this)" id="like-${c.id}">
+          ❤️ <span>${c.likes || 0}</span>
+        </button>
+      </div>
+    </div>`;
+}
+function addCommentBrick(comment) {
+  const wall = document.getElementById("commentsWall");
+  wall.insertAdjacentHTML("afterbegin", buildCommentBrickHtml(comment));
+}
+function loadComments() {
+  fetch(API_BASE + "/api/comments")
+    .then(r => r.json())
+    .then(comments => {
+      const wall = document.getElementById("commentsWall");
+      wall.innerHTML = comments.map(buildCommentBrickHtml).join("");
+    })
+    .catch(() => {});
+}
+async function likeComment(id, btn) {
+  const likedSet = JSON.parse(localStorage.getItem("likedComments") || "[]");
+  if (likedSet.includes(id)) return;
+  btn.disabled = true;
+  try {
+    const r = await fetch(API_BASE + "/api/comments/" + id + "/like", { method: "POST" });
+    if (r.ok) {
+      const updated = await r.json();
+      btn.querySelector("span").textContent = updated.likes;
+      btn.classList.add("reacted");
+      likedSet.push(id);
+      localStorage.setItem("likedComments", JSON.stringify(likedSet));
+    }
+  } finally { btn.disabled = false; }
+}
+async function recordVisit() {
+  try {
+    const r = await fetch(API_BASE + "/api/visits", { method: "POST" });
+    if (r.ok) {
+      const data = await r.json();
+      const pill = document.getElementById("visitPill");
+      if (pill) pill.textContent = "👁️ " + data.count.toLocaleString() + " visitor" + (data.count !== 1 ? "s" : "");
+    }
+  } catch {}
+}
+async function copyShareLink() {
+  const url = window.location.href.split("?")[0];
+  try {
+    await navigator.clipboard.writeText(url);
+    const btn = document.getElementById("copyBtn");
+    if (btn) { btn.textContent = "✓ Copied!"; btn.classList.add("copied"); setTimeout(() => { btn.textContent = "🔗 Copy Link"; btn.classList.remove("copied"); }, 2500); }
+  } catch { alert("Copy the URL: " + url); }
+}
+
+async function submitReview() {
+  const reviewEl = document.getElementById("review");
+  if (!reviewEl) return;
+  const review = reviewEl.value.trim();
+  if (!review) return;
+  const btn = document.querySelector(".submit-btn");
+  if (btn) btn.disabled = true;
+  const msg = document.getElementById("reviewMsg");
+  try {
+    const r = await fetch(API_BASE + "/api/comments", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ body: review, name: window._visitorName || "Anonymous" })
+    });
+    console.log("POST status:", r.status, r.ok);
+    if (!r.ok) {
+      const text = await r.text();
+      throw new Error("HTTP " + r.status + ": " + text.slice(0, 80));
+    }
+    const comment = await r.json();
+    console.log("Comment saved:", comment);
+    try { addCommentBrick(comment); } catch(e) { console.error("brick:", e); }
+    reviewEl.value = "";
+    if (msg) {
+      msg.textContent = "✓ Thank you for your feedback!";
+      setTimeout(() => { msg.textContent = ""; }, 3000);
+    }
+  } catch(err) {
+    console.error("submitReview failed:", err.message);
+    if (msg) {
+      msg.textContent = "✗ Error: " + err.message;
+      setTimeout(() => { msg.textContent = ""; }, 8000);
+    }
+  } finally {
+    if (btn) btn.disabled = false;
+  }
+}
+
+/* ===== PAGE NAVIGATION ===== */
+function hideAllPages() {
+  document.getElementById("hiddenGemsPage").classList.add("hidden");
+  document.getElementById("aboutPage").classList.add("hidden");
+  document.getElementById("aboutMePage").classList.add("hidden");
+}
+
+function showAbout() {
+  hideAllPages();
+  document.getElementById("aboutPage").classList.remove("hidden");
+  document.querySelectorAll(".page-nav button").forEach((b,i) => b.classList.toggle("active", i===1));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  statsAnimated = false;
+  setTimeout(animateStats, 300);
+}
+
+function showHiddenGems() {
+  hideAllPages();
+  document.getElementById("hiddenGemsPage").classList.remove("hidden");
+  document.querySelectorAll(".page-nav button").forEach((b,i) => b.classList.toggle("active", i===0));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+function showAboutMe() {
+  hideAllPages();
+  document.getElementById("aboutMePage").classList.remove("hidden");
+  document.querySelectorAll(".page-nav button").forEach((b,i) => b.classList.toggle("active", i===2));
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+/* ===== ABOUT PAGE ===== */
+const proverbs = [
+  '"Marhaba" — Welcome, you are among friends here!',
+  '"He who has a companion has a mirror."',
+  '"A guest is a gift from God." (Al-Dayf ni\'mat)',
+  '"Patience is the key to relief." (Al-sabr miftah al-faraj)',
+  '"One hand alone cannot clap."',
+  '"Mansaf is best eaten with friends!"',
+  '"Jordan: Small in size, giant in history and heart."',
+  '"The generous man is close to God." (Al-karim qarib min Allah)',
+  '"In Jordan, even strangers are treated as family."',
+  '"Tea is the language of Jordanian hospitality."'
+];
+
+function newProverb() {
+  const el = document.getElementById("proverbDisplay");
+  el.textContent = proverbs[Math.floor(Math.random() * proverbs.length)];
+}
+
+function shuffleAboutCards() {
+  const container = document.getElementById("aboutCardContainer");
+  const cards = Array.from(container.getElementsByClassName("about-card"));
+  for (let i = cards.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    container.appendChild(cards[j]);
+    [cards[i], cards[j]] = [cards[j], cards[i]];
+  }
+}
+
+function startEmojiRain() {
+  const emojis = ['🐪','☕','🇯🇴','🏜️','🌯','⭐','🌙','🗿','🍵','🌺','💎','🏺'];
+  for (let i = 0; i < 35; i++) {
+    setTimeout(() => {
+      const el = document.createElement('div');
+      el.className = 'emoji-rain';
+      el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+      el.style.left = Math.random() * 96 + 'vw';
+      el.style.animationDuration = (Math.random() * 2 + 3) + 's';
+      document.body.appendChild(el);
+      setTimeout(() => el.remove(), 5500);
+    }, i * 120);
+  }
+}
+
+/* ===== WATERFALL PEOPLE ===== */
+const greetings = ["Hi","你好","مرحبا","ہیلو","नमस्ते","Bonjour","Hola","سلام","வணக்கம்","Привет","Marhaba","Salam"];
+function spawnPerson() {
+  const person = document.createElement("div");
+  person.className = "person";
+  person.textContent = greetings[Math.floor(Math.random() * greetings.length)];
+  const left = Math.random() < 0.5 ? "20px" : "calc(100% - 64px)";
+  person.style.cssText = `left:${left};animation:fallDown ${4 + Math.random()*4}s linear forwards;`;
+  document.body.appendChild(person);
+  setTimeout(() => person.remove(), 8500);
+}
+function startWaterfall() { setInterval(spawnPerson, 1200); }
+
+/* ===== QR CODE ===== */
+function generateQR() {
+  const qrEl = document.getElementById("qrcode");
+  qrEl.innerHTML = "";
+  try {
+    new QRCode(qrEl, { text: "https://pnqv56wdqf-sys.github.io/r/", width: 150, height: 150 });
+  } catch(e) {
+    qrEl.textContent = "QR unavailable";
+  }
+}
+
+/* ===== MODAL CLOSE ON OVERLAY ===== */
+document.getElementById("bookingModal").addEventListener("click", function(e) { if(e.target===this) closeBookingModal(); });
+document.getElementById("brokeModal").addEventListener("click", function(e) { if(e.target===this) this.classList.add("hidden"); });
+
+/* ===== STATS COUNTER ANIMATION ===== */
+let statsAnimated = false;
+function animateStats() {
+  if (statsAnimated) return;
+  statsAnimated = true;
+  document.querySelectorAll('.stat-number').forEach(el => {
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || '';
+    const duration = 1600;
+    const steps = 60;
+    const increment = target / steps;
+    let current = 0;
+    let step = 0;
+    const timer = setInterval(() => {
+      step++;
+      current = Math.min(Math.round(increment * step), target);
+      el.textContent = current.toLocaleString() + suffix;
+      if (step >= steps) clearInterval(timer);
+    }, duration / steps);
+  });
+}
+
+/* ===== JORDAN QUIZ ===== */
+const quizQuestions = [
+  { q: "How far below sea level is the Dead Sea?", opts: ["250 metres", "430 metres", "610 metres", "180 metres"], ans: 1, fact: "The Dead Sea sits 430m below sea level — the lowest point on Earth's surface!" },
+  { q: "Who built the ancient city of Petra?", opts: ["The Romans", "The Byzantines", "The Nabataeans", "The Umayyads"], ans: 2, fact: "Petra was built by the Nabataeans, master traders and hydraulic engineers, around the 4th century BC." },
+  { q: "What is Jordan's national dish?", opts: ["Falafel", "Hummus", "Mansaf", "Shawarma"], ans: 2, fact: "Mansaf — slow-cooked lamb in a tangy jameed sauce served over rice — is Jordan's national dish!" },
+  { q: "Wadi Rum has been used as a film location for which planet?", opts: ["Venus", "Saturn", "Jupiter", "Mars"], ans: 3, fact: "NASA and filmmakers use Wadi Rum to simulate Mars — The Martian and Rogue One were filmed here!" },
+  { q: "What is the capital city of Jordan?", opts: ["Aqaba", "Petra", "Amman", "Jerash"], ans: 2, fact: "Amman is Jordan's capital and largest city, built across seven hills and home to over 4 million people." },
+  { q: "How many sunny days does Aqaba enjoy per year?", opts: ["Over 200", "Over 250", "Over 300", "Over 350"], ans: 2, fact: "Aqaba enjoys over 300 sunny days a year, making it one of the sunniest cities in the world!" },
+  { q: "Petra is one of how many New Seven Wonders of the World?", opts: ["It's the only one", "One of 7", "One of 10", "One of 5"], ans: 1, fact: "Petra is one of the New Seven Wonders of the World, voted by over 100 million people!" },
+  { q: "What is the Jordanian word for the tradition of hospitality?", opts: ["Marhaba", "Diyafa", "Mansaf", "Salam"], ans: 1, fact: "Diyafa is the Bedouin tradition of hospitality — a guest must never be turned away, even a stranger." }
+];
+
+let quizIndex = 0;
+let quizScore = 0;
+let quizAnswered = false;
+
+function quizRender() {
+  const q = quizQuestions[quizIndex];
+  const total = quizQuestions.length;
+  document.getElementById('quizQNum').textContent = `Question ${quizIndex + 1} of ${total}`;
+  document.getElementById('quizQuestion').textContent = q.q;
+  document.getElementById('quizProgressFill').style.width = ((quizIndex / total) * 100) + '%';
+  const fb = document.getElementById('quizFeedback');
+  fb.className = 'quiz-feedback';
+  fb.textContent = '';
+  document.getElementById('quizNextBtn').style.display = 'none';
+  quizAnswered = false;
+  const opts = document.getElementById('quizOptions');
+  opts.innerHTML = q.opts.map((o, i) => `<button class="quiz-opt" onclick="quizAnswer(this, ${i})">${o}</button>`).join('');
+}
+
+function quizAnswer(btn, idx) {
+  if (quizAnswered) return;
+  quizAnswered = true;
+  const q = quizQuestions[quizIndex];
+  const opts = document.querySelectorAll('.quiz-opt');
+  opts.forEach(b => b.disabled = true);
+  const fb = document.getElementById('quizFeedback');
+  if (idx === q.ans) {
+    quizScore++;
+    btn.classList.add('correct');
+    fb.textContent = '✓ Correct! ' + q.fact;
+    fb.className = 'quiz-feedback show correct-fb';
+  } else {
+    btn.classList.add('wrong');
+    opts[q.ans].classList.add('correct');
+    fb.textContent = '✗ Not quite. ' + q.fact;
+    fb.className = 'quiz-feedback show wrong-fb';
+  }
+  const nextBtn = document.getElementById('quizNextBtn');
+  nextBtn.style.display = 'inline-block';
+  nextBtn.textContent = quizIndex < quizQuestions.length - 1 ? 'Next Question →' : 'See My Score 🏆';
+}
+
+function quizNext() {
+  quizIndex++;
+  if (quizIndex >= quizQuestions.length) {
+    quizShowResult();
+  } else {
+    quizRender();
+  }
+}
+
+function quizShowResult() {
+  document.getElementById('quizBody').style.display = 'none';
+  const result = document.getElementById('quizResult');
+  result.style.display = 'block';
+  const pct = Math.round((quizScore / quizQuestions.length) * 100);
+  document.getElementById('quizFinalScore').textContent = `${quizScore}/${quizQuestions.length}`;
+  document.getElementById('quizProgressFill').style.width = '100%';
+  let title, msg;
+  if (pct === 100) { title = "Jordan Expert! 🏆"; msg = "Perfect score! You know Jordan like a local. مرحبا يا خبير!"; }
+  else if (pct >= 75) { title = "Almost a Jordanian! 🇯🇴"; msg = "Impressive knowledge! A few more visits to Jordan and you'll know it all."; }
+  else if (pct >= 50) { title = "Curious Traveler ✈️"; msg = "Not bad! Jordan clearly has your attention. Keep exploring!"; }
+  else { title = "Time to Visit Jordan! 🐪"; msg = "The best way to learn about Jordan is to go there. Pack your bags!"; }
+  document.getElementById('quizResultTitle').textContent = title;
+  document.getElementById('quizResultMsg').textContent = msg;
+}
+
+function quizRestart() {
+  quizIndex = 0;
+  quizScore = 0;
+  document.getElementById('quizBody').style.display = 'block';
+  document.getElementById('quizResult').style.display = 'none';
+  quizRender();
+}
+
+// Init quiz on page load
+quizRender();
+</script>
+<script src="https://replit-cdn.com/replit-pill/replit-pill.global.js" data-repl-id="cb7dfaa3-3f76-4e1b-a71c-7ee9f98ba0de"></script></body>
+</html>
